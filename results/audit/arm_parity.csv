@@ -1,0 +1,71 @@
+config,check,pooled,fedavg,fedprox,verdict
+forester,results: feature_set,['stat_sf'],['stat_sf'],['stat_sf'],same
+forester,results: budget,['t001'],['t001'],['t001'],same
+forester,results: seeds,"[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]","[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]","[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]",same
+impala,results: feature_set,['stat_sf'],['stat_sf'],['stat_sf'],same
+impala,results: budget,['t001'],['t001'],['t001'],same
+impala,results: seeds,"[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]","[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]","[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]",same
+silverado,results: feature_set,['stat_sf'],['stat_sf'],['stat_sf'],same
+silverado,results: budget,['t001'],['t001'],['t001'],same
+silverado,results: seeds,"[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]","[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]","[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]",same
+traverse,results: feature_set,['stat'],['stat'],['stat'],same
+traverse,results: budget,['t001'],['t001'],['t001'],same
+traverse,results: seeds,"[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]","[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]","[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]",same
+road,results: feature_set,['stat_sf'],['stat_sf'],['stat_sf'],same
+road,results: budget,['t001'],['t001'],['t001'],same
+road,results: seeds,"[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]","[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]","[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]",same
+impala,training windows,495369 (all sources together),224431 + 145901 + 125037,224431 + 145901 + 125037,same
+impala,class weight (attack),5.00,"5.00, 5.00, 5.00","5.00, 5.00, 5.00",same
+impala,features,stat_sf (9),stat_sf (9),stat_sf (9),same
+impala,scaling (median/IQR + arcsinh),fitted on all source training windows [2fc14e6c61],same statistics [2fc14e6c61],same statistics [2fc14e6c61],same (shared statistics: an assumption of the federated setting)
+impala,network,"9-64-32-1, LayerNorm, 2945 weights","9-64-32-1, LayerNorm, 2945 weights","9-64-32-1, LayerNorm, 2945 weights",same
+impala,initial weights (seed 0),new_model(seed),new_model(seed),new_model(seed),same
+impala,windows seen in training,"9,907,380 (20 epochs)","9,907,380 (10 rounds x 2 local epochs)","9,907,380 (same)",same
+impala,gradient steps (all clients),"19,360","19,380","19,380",comparable (differs only by rounding of the last batch per client)
+impala,weight of each vehicle,by number of windows (implicit),"by number of windows (averaging weights 45.3%, 29.5%, 25.2%)",same as FedAvg,same
+impala,selection of feature set and budget,"mean inner AUPRC, pooled MLP",uses the pooled MLP's choice,uses the pooled MLP's choice; mu chosen with FedProx,by design: chosen with the pooled model
+traverse,training windows,387017 (all sources together),116079 + 145901 + 125037,116079 + 145901 + 125037,same
+traverse,class weight (attack),5.00,"5.00, 5.00, 5.00","5.00, 5.00, 5.00",same
+traverse,features,stat (13),stat (13),stat (13),same
+traverse,scaling (median/IQR + arcsinh),fitted on all source training windows [855a2b14c0],same statistics [855a2b14c0],same statistics [855a2b14c0],same (shared statistics: an assumption of the federated setting)
+traverse,network,"13-64-32-1, LayerNorm, 3201 weights","13-64-32-1, LayerNorm, 3201 weights","13-64-32-1, LayerNorm, 3201 weights",same
+traverse,initial weights (seed 0),new_model(seed),new_model(seed),new_model(seed),same
+traverse,windows seen in training,"7,740,340 (20 epochs)","7,740,340 (10 rounds x 2 local epochs)","7,740,340 (same)",same
+traverse,gradient steps (all clients),"15,120","15,140","15,140",comparable (differs only by rounding of the last batch per client)
+traverse,weight of each vehicle,by number of windows (implicit),"by number of windows (averaging weights 30.0%, 37.7%, 32.3%)",same as FedAvg,same
+traverse,selection of feature set and budget,"mean inner AUPRC, pooled MLP",uses the pooled MLP's choice,uses the pooled MLP's choice; mu chosen with FedProx,by design: chosen with the pooled model
+silverado,training windows,465547 (all sources together),116079 + 224431 + 125037,116079 + 224431 + 125037,same
+silverado,class weight (attack),5.00,"5.00, 5.00, 5.00","5.00, 5.00, 5.00",same
+silverado,features,stat_sf (9),stat_sf (9),stat_sf (9),same
+silverado,scaling (median/IQR + arcsinh),fitted on all source training windows [2e27b64a61],same statistics [2e27b64a61],same statistics [2e27b64a61],same (shared statistics: an assumption of the federated setting)
+silverado,network,"9-64-32-1, LayerNorm, 2945 weights","9-64-32-1, LayerNorm, 2945 weights","9-64-32-1, LayerNorm, 2945 weights",same
+silverado,initial weights (seed 0),new_model(seed),new_model(seed),new_model(seed),same
+silverado,windows seen in training,"9,310,940 (20 epochs)","9,310,940 (10 rounds x 2 local epochs)","9,310,940 (same)",same
+silverado,gradient steps (all clients),"18,200","18,220","18,220",comparable (differs only by rounding of the last batch per client)
+silverado,weight of each vehicle,by number of windows (implicit),"by number of windows (averaging weights 24.9%, 48.2%, 26.9%)",same as FedAvg,same
+silverado,selection of feature set and budget,"mean inner AUPRC, pooled MLP",uses the pooled MLP's choice,uses the pooled MLP's choice; mu chosen with FedProx,by design: chosen with the pooled model
+forester,training windows,486411 (all sources together),116079 + 224431 + 145901,116079 + 224431 + 145901,same
+forester,class weight (attack),5.00,"5.00, 5.00, 5.00","5.00, 5.00, 5.00",same
+forester,features,stat_sf (9),stat_sf (9),stat_sf (9),same
+forester,scaling (median/IQR + arcsinh),fitted on all source training windows [0c081e8fd6],same statistics [0c081e8fd6],same statistics [0c081e8fd6],same (shared statistics: an assumption of the federated setting)
+forester,network,"9-64-32-1, LayerNorm, 2945 weights","9-64-32-1, LayerNorm, 2945 weights","9-64-32-1, LayerNorm, 2945 weights",same
+forester,initial weights (seed 0),new_model(seed),new_model(seed),new_model(seed),same
+forester,windows seen in training,"9,728,220 (20 epochs)","9,728,220 (10 rounds x 2 local epochs)","9,728,220 (same)",same
+forester,gradient steps (all clients),"19,020","19,020","19,020",comparable (differs only by rounding of the last batch per client)
+forester,weight of each vehicle,by number of windows (implicit),"by number of windows (averaging weights 23.9%, 46.1%, 30.0%)",same as FedAvg,same
+forester,selection of feature set and budget,"mean inner AUPRC, pooled MLP",uses the pooled MLP's choice,uses the pooled MLP's choice; mu chosen with FedProx,by design: chosen with the pooled model
+road,training windows,611448 (all sources together),116079 + 224431 + 145901 + 125037,116079 + 224431 + 145901 + 125037,same
+road,class weight (attack),5.00,"5.00, 5.00, 5.00, 5.00","5.00, 5.00, 5.00, 5.00",same
+road,features,stat_sf (9),stat_sf (9),stat_sf (9),same
+road,scaling (median/IQR + arcsinh),fitted on all source training windows [8da2f1de0c],same statistics [8da2f1de0c],same statistics [8da2f1de0c],same (shared statistics: an assumption of the federated setting)
+road,network,"9-64-32-1, LayerNorm, 2945 weights","9-64-32-1, LayerNorm, 2945 weights","9-64-32-1, LayerNorm, 2945 weights",same
+road,initial weights (seed 0),new_model(seed),new_model(seed),new_model(seed),same
+road,windows seen in training,"12,228,960 (20 epochs)","12,228,960 (10 rounds x 2 local epochs)","12,228,960 (same)",same
+road,gradient steps (all clients),"23,900","23,920","23,920",comparable (differs only by rounding of the last batch per client)
+road,weight of each vehicle,by number of windows (implicit),"by number of windows (averaging weights 19.0%, 36.7%, 23.9%, 20.4%)",same as FedAvg,same
+road,selection of feature set and budget,"mean inner AUPRC, pooled MLP",uses the pooled MLP's choice,uses the pooled MLP's choice; mu chosen with FedProx,by design: chosen with the pooled model
+all,optimiser,"Adam, lr 0.0003, weight decay 0.0001, gradient clip 1.0; one optimiser for all 20 epochs","same settings, but a new Adam optimiser in every round and client (its memory restarts each round)","same settings, but a new Adam optimiser in every round and client (its memory restarts each round)",differs by design
+all,batches,batches of 512 windows mixed from all source vehicles,batches of 512 windows from one vehicle (the client),batches of 512 windows from one vehicle (the client),differs by design
+all,loss,binary cross-entropy with class weight,same; FedProx adds (mu/2)*||w - w_global||^2,same; FedProx adds (mu/2)*||w - w_global||^2,same (FedProx: by design)
+all,zero-shot threshold,set on the source calibration windows of all sources,"same windows (clients share model scores, not data)","same windows (clients share model scores, not data)",same
+all,evaluation seeds,"[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]","[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]","[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]",same

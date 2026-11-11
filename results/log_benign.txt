@@ -1,0 +1,141 @@
+loading features ...
+  impala     fit  116,079  calib  20,392  test  113,423   as target: attack-free  32,183 / scored  217,711 (11,070 attack)
+  traverse   fit  224,431  calib  39,519  test  268,647   as target: attack-free  14,632 / scored  517,965 (20,190 attack)
+  silverado  fit  145,901  calib  25,661  test  154,536   as target: attack-free  30,067 / scored  296,031 (18,930 attack)
+  forester   fit  125,037  calib  21,974  test  145,934   as target: attack-free  12,563 / scored  280,382 (25,200 attack)
+
+========================================================================================
+RF pooled: false alarms at the calibrated threshold
+========================================================================================
+
+  held out impala   (budget 0.01%; reached 1.32% on 206,641 benign windows)
+    benign windows                   windows  false alarms     rate
+    next to an attack (1 window)       2,514            39    1.55%
+    2-5 windows away                   1,070            10    0.93%
+    6-20 windows away                  1,074            13    1.21%
+    more than 20 windows away        201,983         2,663    1.32%
+    by source set                 
+      set_01                         206,641         2,725    1.32%
+    recordings with the most false alarms
+      standstill-1__set_01_train01          19,434     293    1.51%
+      standstill-2__set_01_train01          12,590     180    1.43%
+      rpm-1__set_01_train01                  8,236     147    1.78%
+      rpm-4__set_01_test01                   8,181     145    1.77%
+      force-neutral-4__set_01_test01         8,349     129    1.55%
+
+  held out traverse   (budget 0.01%; reached 13.39% on 497,775 benign windows)
+    benign windows                   windows  false alarms     rate
+    next to an attack (1 window)       1,662           140    8.42%
+    2-5 windows away                   2,879           296   10.28%
+    6-20 windows away                  4,145           550   13.27%
+    more than 20 windows away        489,089        65,644   13.42%
+    by source set                 
+      set_02                         394,828        54,241   13.74%
+      set_04                         102,947        12,389   12.03%
+    recordings with the most false alarms
+      force-neutral-3__set_02_test03        42,067   6,724   15.98%
+      rpm-1__set_04_test02                  32,856   5,446   16.58%
+      force-neutral-4__set_02_test03        26,553   4,269   16.08%
+      speed-2__set_02_train01               27,307   4,040   14.79%
+      speed-3__set_02_test01                26,042   3,669   14.09%
+
+  held out silverado   (budget 0.01%; reached 0.02% on 277,101 benign windows)
+    benign windows                   windows  false alarms     rate
+    next to an attack (1 window)      10,083             1    0.01%
+    2-5 windows away                   3,040             2    0.07%
+    6-20 windows away                  3,106             0    0.00%
+    more than 20 windows away        260,872            65    0.02%
+    by source set                 
+      set_01                          25,117            10    0.04%
+      set_03                         251,984            58    0.02%
+    recordings with the most false alarms
+      double-1__set_03_test01               12,395       9    0.07%
+      triple-4__set_03_train01               6,346       6    0.09%
+      rpm-2__set_03_test03                  11,355       5    0.04%
+      triple-2__set_03_test01               11,332       5    0.04%
+      rpm-4__set_01_test02                   6,430       4    0.06%
+
+  held out forester   (budget 0.01%; reached 7.21% on 255,182 benign windows)
+    benign windows                   windows  false alarms     rate
+    next to an attack (1 window)       1,268           100    7.89%
+    2-5 windows away                     680            32    4.71%
+    6-20 windows away                  2,451           148    6.04%
+    more than 20 windows away        250,783        18,126    7.23%
+    by source set                 
+      set_02                          58,546         4,713    8.05%
+      set_04                         196,636        13,693    6.96%
+    recordings with the most false alarms
+      double-1__set_04_test03               11,982   1,023    8.54%
+      rpm-3__set_04_train01                  6,858   1,012   14.76%
+      standstill-2__set_04_test01            8,778     977   11.13%
+      systematic-4__set_04_train01          12,297     915    7.44%
+      speed-2__set_04_test01                 7,063     851   12.05%
+
+========================================================================================
+MLP pooled: false alarms at the calibrated threshold
+========================================================================================
+
+  held out impala   (budget 0.01%; reached 9.23% on 206,641 benign windows)
+    benign windows                   windows  false alarms     rate
+    next to an attack (1 window)       2,514           290   11.54%
+    2-5 windows away                   1,070            78    7.29%
+    6-20 windows away                  1,074           114   10.61%
+    more than 20 windows away        201,983        18,601    9.21%
+    by source set                 
+      set_01                         206,641        19,083    9.23%
+    recordings with the most false alarms
+      standstill-1__set_01_train01          19,434   2,129   10.96%
+      standstill-2__set_01_train01          12,590   1,365   10.84%
+      force-neutral-2__set_01_train01        9,891   1,119   11.31%
+      rpm-4__set_01_test01                   8,181     932   11.39%
+      force-neutral-4__set_01_test01         8,349     922   11.04%
+
+  held out traverse   (budget 0.01%; reached 21.02% on 497,775 benign windows)
+    benign windows                   windows  false alarms     rate
+    next to an attack (1 window)       1,662           262   15.76%
+    2-5 windows away                   2,879           557   19.35%
+    6-20 windows away                  4,145           934   22.53%
+    more than 20 windows away        489,089       102,894   21.04%
+    by source set                 
+      set_02                         394,828        82,825   20.98%
+      set_04                         102,947        21,822   21.20%
+    recordings with the most false alarms
+      force-neutral-3__set_02_test03        42,067   8,347   19.84%
+      rpm-1__set_04_test02                  32,856   7,728   23.52%
+      speed-2__set_02_train01               27,307   7,516   27.52%
+      speed-1__set_02_train01               26,182   6,515   24.88%
+      force-neutral-4__set_02_test03        26,553   6,033   22.72%
+
+  held out silverado   (budget 0.01%; reached 0.00% on 277,101 benign windows)
+    benign windows                   windows  false alarms     rate
+    next to an attack (1 window)      10,083             0    0.00%
+    2-5 windows away                   3,040             0    0.00%
+    6-20 windows away                  3,106             0    0.00%
+    more than 20 windows away        260,872             1    0.00%
+    by source set                 
+      set_01                          25,117             0    0.00%
+      set_03                         251,984             1    0.00%
+    recordings with the most false alarms
+      speed-1__set_03_test03                12,359       1    0.01%
+      DoS-1__set_03_test01                   1,188       0    0.00%
+      DoS-2__set_03_test01                   2,798       0    0.00%
+      DoS-3__set_03_train01                  6,175       0    0.00%
+      DoS-4__set_03_train01                  6,707       0    0.00%
+
+  held out forester   (budget 0.01%; reached 2.60% on 255,182 benign windows)
+    benign windows                   windows  false alarms     rate
+    next to an attack (1 window)       1,268            18    1.42%
+    2-5 windows away                     680            15    2.21%
+    6-20 windows away                  2,451            65    2.65%
+    more than 20 windows away        250,783         6,537    2.61%
+    by source set                 
+      set_02                          58,546         1,345    2.30%
+      set_04                         196,636         5,290    2.69%
+    recordings with the most false alarms
+      double-1__set_04_test03               11,982     407    3.40%
+      systematic-4__set_04_train01          12,297     398    3.24%
+      systematic-3__set_04_train01           9,859     367    3.72%
+      DoS-1__set_04_test03                   6,148     295    4.80%
+      fuzzing-1__set_04_test03               5,817     255    4.38%
+
+  wrote results/tables/benign_by_distance.csv and benign_by_recording.csv

@@ -1,0 +1,243 @@
+
+==========================================================================================
+A. WHAT WAS SELECTED, ON SOURCE VEHICLES ONLY
+==========================================================================================
+held_out             impala traverse silverado forester
+family parameter                                       
+mlp    budget          t001     t001      t001     t001
+       feature_set  stat_sf     stat   stat_sf  stat_sf
+       fedprox_mu      0.01     0.01       0.1     0.01
+rf     budget          t001     t001      t001     t001
+       feature_set      all      all       all      all
+
+==========================================================================================
+B. ZERO-SHOT vs BENIGN-CALIBRATED  (headline configurations)
+==========================================================================================
+
+  RF pooled_3
+    held out    src MCC src AUPRC  |  AUROC  AUPRC     zs    zsb    cal  oracle
+    impala        0.837     0.825  |  0.801  0.556  0.065  0.107  0.527   0.627
+    traverse      0.838     0.845  |  0.871  0.708  0.201  0.188  0.318   0.778
+    silverado     0.806     0.821  |  0.913  0.763  0.002  0.002  0.741   0.746
+    forester      0.884     0.867  |  0.893  0.810  0.000  0.000  0.588   0.835
+    MEAN          0.841     0.840  |  0.869  0.709  0.067  0.074  0.543   0.746
+
+  MLP single
+    held out    src MCC src AUPRC  |  AUROC  AUPRC     zs    zsb    cal  oracle
+    impala          nan       nan  |  0.725  0.378  0.123  0.083  0.340   0.457
+    traverse        nan       nan  |  0.745  0.491  0.255  0.228  0.211   0.575
+    silverado       nan       nan  |  0.772  0.582  0.125  0.073  0.439   0.660
+    forester        nan       nan  |  0.818  0.663  0.191  0.172  0.613   0.696
+    MEAN            nan       nan  |  0.765  0.528  0.173  0.139  0.401   0.597
+
+  MLP pooled
+    held out    src MCC src AUPRC  |  AUROC  AUPRC     zs    zsb    cal  oracle
+    impala        0.817     0.764  |  0.773  0.538  0.332  0.407  0.516   0.571
+    traverse      0.834     0.801  |  0.782  0.547  0.179  0.176  0.244   0.618
+    silverado     0.758     0.734  |  0.898  0.749  0.209  0.182  0.656   0.739
+    forester      0.842     0.802  |  0.871  0.793  0.480  0.477  0.773   0.805
+    MEAN          0.813     0.775  |  0.831  0.657  0.300  0.310  0.547   0.683
+
+  MLP fedavg
+    held out    src MCC src AUPRC  |  AUROC  AUPRC     zs    zsb    cal  oracle
+    impala        0.749     0.713  |  0.744  0.455  0.509  0.477  0.352   0.531
+    traverse      0.788     0.768  |  0.802  0.600  0.560  0.637  0.169   0.659
+    silverado     0.754     0.707  |  0.863  0.701  0.482  0.302  0.719   0.735
+    forester      0.783     0.777  |  0.848  0.760  0.634  0.667  0.763   0.789
+    MEAN          0.768     0.741  |  0.814  0.629  0.546  0.521  0.501   0.679
+
+  MLP fedprox
+    held out    src MCC src AUPRC  |  AUROC  AUPRC     zs    zsb    cal  oracle
+    impala        0.776     0.720  |  0.714  0.427  0.500  0.443  0.371   0.518
+    traverse      0.802     0.760  |  0.793  0.591  0.626  0.630  0.178   0.667
+    silverado     0.771     0.702  |  0.817  0.660  0.362  0.174  0.697   0.707
+    forester      0.804     0.769  |  0.826  0.745  0.700  0.749  0.765   0.777
+    MEAN          0.789     0.738  |  0.788  0.606  0.547  0.499  0.503   0.667
+
+  Parts of the cross-vehicle gap (mean over held-out vehicles, MCC
+  unless stated). Each is one measurable difference, not a share of
+  a total.
+    model          total gap  threshold  ranking  ranking   residual
+                    src - zs  cal - zsb   dAUROC   dAUPRC oracle-cal
+    RF pooled_3        0.774      0.469    0.068    0.131      0.203
+    MLP single           nan      0.262      nan      nan      0.196
+    MLP pooled         0.512      0.237    0.070    0.118      0.136
+    MLP fedavg         0.222     -0.020    0.082    0.112      0.178
+    MLP fedprox        0.241      0.004    0.108    0.132      0.165
+    total gap   : source-side MCC minus zero-shot MCC on the new vehicle
+    threshold   : what moving the SAME budget rule from source to target
+                  benign traffic gains (threshold shift)
+    ranking     : AUROC / AUPRC lost on the new vehicle; no threshold
+                  can fix this part (representation shift)
+    residual    : what even a calibrated threshold leaves below the oracle
+
+  Calibrated minus zero-shot, per held-out vehicle (* = stable across seeds)
+  comparison                    metric       impala  traverse silverado  forester    mean  same sign      p
+  RF pooled_3: cal - zs         MCC         +0.462    +0.117    +0.739    +0.588   +0.476        4/4  0.125
+  MLP single: cal - zs          MCC         +0.218*   -0.044    +0.314*   +0.422*  +0.227        3/4  0.250
+  MLP pooled: cal - zs          MCC         +0.184*   +0.065    +0.446*   +0.293*  +0.247        4/4  0.125
+  MLP fedavg: cal - zs          MCC         -0.157*   -0.391*   +0.237*   +0.129*  -0.045        2/4  0.750
+  MLP fedprox: cal - zs         MCC         -0.129*   -0.449*   +0.335*   +0.065*  -0.044        2/4  0.750
+
+==========================================================================================
+C. TRAINING STRATEGIES  (selected feature set, budget and mu)
+==========================================================================================
+
+  MLP, seed-averaged value per held-out vehicle (+- seed sd)
+
+    auroc
+      single      0.725+-0.013   0.745+-0.031   0.772+-0.013   0.818+-0.016   0.765
+      pooled      0.773+-0.016   0.782+-0.024   0.898+-0.020   0.871+-0.003   0.831
+      fedavg      0.744+-0.018   0.802+-0.018   0.863+-0.017   0.848+-0.008   0.814
+      fedprox     0.714+-0.013   0.793+-0.022   0.817+-0.015   0.826+-0.004   0.788
+
+    auprc
+      single      0.378+-0.051   0.491+-0.030   0.582+-0.036   0.663+-0.068   0.528
+      pooled      0.538+-0.019   0.547+-0.064   0.749+-0.073   0.793+-0.012   0.657
+      fedavg      0.455+-0.020   0.600+-0.033   0.701+-0.017   0.760+-0.013   0.629
+      fedprox     0.427+-0.009   0.591+-0.029   0.660+-0.024   0.745+-0.012   0.606
+
+    mcc_zs
+      single      0.123+-0.015   0.255+-0.063   0.125+-0.029   0.191+-0.034   0.173
+      pooled      0.332+-0.129   0.179+-0.047   0.209+-0.062   0.480+-0.052   0.300
+      fedavg      0.509+-0.055   0.560+-0.130   0.482+-0.134   0.634+-0.117   0.546
+      fedprox     0.500+-0.025   0.626+-0.055   0.362+-0.124   0.700+-0.078   0.547
+
+    mcc_cal
+      single      0.340+-0.054   0.211+-0.084   0.439+-0.112   0.613+-0.111   0.401
+      pooled      0.516+-0.077   0.244+-0.134   0.656+-0.166   0.773+-0.031   0.547
+      fedavg      0.352+-0.054   0.169+-0.042   0.719+-0.026   0.763+-0.064   0.501
+      fedprox     0.371+-0.059   0.178+-0.056   0.697+-0.038   0.765+-0.027   0.503
+
+  Vehicle-level differences (* = stable across seeds; RF has one seed, so no *)
+  comparison                    metric       impala  traverse silverado  forester    mean  same sign      p
+  MLP pooled - single           mcc_zs      +0.210*   -0.075*   +0.085*   +0.290*  +0.127        3/4  0.250
+  MLP fedavg - single           mcc_zs      +0.386*   +0.305*   +0.357*   +0.443*  +0.373        4/4  0.125
+  MLP fedavg - pooled           mcc_zs      +0.177*   +0.380*   +0.272*   +0.153*  +0.246        4/4  0.125
+  MLP fedprox - fedavg          mcc_zs      -0.009    +0.067    -0.120*   +0.067   +0.001        2/4  1.000
+  MLP pooled - single           mcc_cal     +0.176*   +0.034    +0.217*   +0.161*  +0.147        4/4  0.125
+  MLP fedavg - single           mcc_cal     +0.012    -0.042    +0.280*   +0.150*  +0.100        3/4  0.375
+  MLP fedavg - pooled           mcc_cal     -0.164*   -0.075    +0.063    -0.011   -0.047        3/4  0.375
+  MLP fedprox - fedavg          mcc_cal     +0.019    +0.009    -0.022    +0.003   +0.002        3/4  0.875
+  MLP pooled - single           auprc       +0.160*   +0.057*   +0.167*   +0.130*  +0.128        4/4  0.125
+  MLP fedavg - single           auprc       +0.077*   +0.110*   +0.119*   +0.096*  +0.100        4/4  0.125
+  MLP fedavg - pooled           auprc       -0.083*   +0.053*   -0.048*   -0.034*  -0.028        3/4  0.500
+  MLP fedprox - fedavg          auprc       -0.028*   -0.009    -0.041*   -0.015*  -0.023        4/4  0.125
+  RF pooled_3 - single          mcc_zs      -0.035    +0.067    -0.013    -0.006   +0.003        1/4  1.000
+  RF pooled_3 - balanced        mcc_zs      -0.058    +0.003    -0.002    -0.001   -0.015        3/4  0.500
+  RF balanced - matched         mcc_zs      +0.089    -0.014    +0.003    -0.015   +0.016        2/4  0.875
+  RF pooled_3 - single          mcc_cal     -0.122    +0.027    +0.138    +0.006   +0.012        3/4  0.625
+  RF pooled_3 - balanced        mcc_cal     +0.012    -0.096    -0.002    +0.098   +0.003        2/4  0.750
+  RF balanced - matched         mcc_cal     -0.043    +0.127    +0.004    -0.030   +0.014        2/4  0.875
+  RF pooled_3 - single          auprc       -0.080    +0.190    +0.031    +0.115   +0.064        3/4  0.375
+  RF pooled_3 - balanced        auprc       +0.020    -0.020    -0.012    -0.012   -0.006        3/4  0.500
+  RF balanced - matched         auprc       +0.015    -0.011    -0.040    +0.015   -0.005        2/4  0.875
+
+  FedProx at every mu (MCC at cal, seed-averaged; [ ] = selected)
+    mu            impala    traverse   silverado    forester
+    0.01         [0.371]     [0.178]      0.720      [0.765]
+    0.1           0.402       0.204      [0.697]      0.765 
+    1.0           0.327       0.223       0.667       0.697 
+
+==========================================================================================
+D. FEATURE REPRESENTATION  (RF, every feature set)
+==========================================================================================
+
+  pooled_3, auprc
+    features      impala  traverse silverado  forester    mean
+    raw            0.234     0.483     0.181     0.241   0.285
+    stat           0.470     0.484     0.828     0.832   0.653
+    stat_sf        0.432     0.694     0.848     0.822   0.699
+    all            0.556     0.708     0.763     0.810   0.709
+
+  pooled_3, mcc_zs
+    features      impala  traverse silverado  forester    mean
+    raw            0.068     0.462    -0.003     0.013   0.135
+    stat           0.181     0.129     0.233     0.872   0.354
+    stat_sf        0.028     0.667     0.225     0.501   0.355
+    all            0.065     0.201     0.002     0.000   0.067
+
+  pooled_3, mcc_cal
+    features      impala  traverse silverado  forester    mean
+    raw            0.232     0.574     0.288     0.243   0.334
+    stat           0.411     0.196     0.787     0.670   0.516
+    stat_sf        0.400     0.315     0.831     0.793   0.585
+    all            0.527     0.318     0.741     0.588   0.543
+
+  single, auprc
+    features      impala  traverse silverado  forester    mean
+    raw            0.151     0.413     0.141     0.167   0.218
+    stat           0.569     0.465     0.750     0.612   0.599
+    stat_sf        0.298     0.450     0.716     0.546   0.503
+    all            0.636     0.518     0.732     0.694   0.645
+
+  single, mcc_zs
+    features      impala  traverse silverado  forester    mean
+    raw            0.051     0.268    -0.051     0.010   0.070
+    stat           0.310     0.256     0.346     0.462   0.344
+    stat_sf        0.011     0.348     0.471     0.294   0.281
+    all            0.100     0.134     0.015     0.006   0.064
+
+  single, mcc_cal
+    features      impala  traverse silverado  forester    mean
+    raw            0.155     0.522     0.175     0.163   0.254
+    stat           0.608     0.253     0.651     0.506   0.505
+    stat_sf        0.257     0.293     0.607     0.491   0.412
+    all            0.649     0.290     0.603     0.582   0.531
+
+  most important features (all, pooled_3, mean over folds)
+    stat_repeat_id_frac         0.222
+    stat_top_id_frac            0.092
+    stat_iat_min_ratio          0.080
+    stat_id_entropy_norm        0.062
+    stat_duration               0.041
+    stat_msg_rate               0.038
+    stat_iat_mean               0.038
+    stat_iat_std                0.037
+
+==========================================================================================
+E. ATTACK-WISE RECALL  (same thresholds as the headline results)
+==========================================================================================
+
+  RF single-vehicle models (selected feature set), mean recall
+    attack             same veh  unseen zs  unseen cal  oracle  targets
+    DoS                   1.000      1.000       0.972   0.960        4
+    triple                0.822      0.996       0.712   0.642        4
+    double                0.798      0.992       0.676   0.560        4
+    speed                 0.724      0.958       0.616   0.510        4
+    standstill            0.519      0.960       0.540   0.451        4
+    rpm                   0.547      0.961       0.530   0.442        4
+    force-neutral         0.511      0.942       0.525   0.441        4
+    interval              0.747      0.915       0.501   0.414        4
+    fuzzing               0.353      0.937       0.366   0.313        4
+    rpm-accessory         0.481      0.894       0.218   0.186        3
+    systematic            0.822      0.850       0.162   0.139        4
+    speed-accessory       0.338      0.813       0.148   0.129        3
+
+    false-alarm rate on the same unseen-vehicle benign windows:
+      zs 80.1%   cal 5.5%
+    Recall at zs is high only because almost everything is flagged;
+    compare attack types at cal.
+
+    attack type seen in training?   zs     cal
+      False                         0.692  0.235
+      True                          0.950  0.523
+
+  MLP arms, recall at cal (mean over vehicles and seeds)
+    arm              single  pooled  fedavg  fedprox
+    attack_type                                     
+    DoS               0.944   0.973   1.000    0.996
+    double            0.616   0.677   0.789    0.711
+    force-neutral     0.577   0.642   0.732    0.693
+    fuzzing           0.277   0.375   0.428    0.452
+    interval          0.284   0.381   0.358    0.301
+    rpm               0.523   0.570   0.660    0.630
+    rpm-accessory     0.257   0.304   0.303    0.291
+    speed             0.609   0.671   0.694    0.692
+    speed-accessory   0.172   0.197   0.324    0.278
+    standstill        0.549   0.650   0.700    0.692
+    systematic        0.223   0.307   0.315    0.336
+    triple            0.643   0.682   0.816    0.746
+
+  With 4 held-out vehicles the smallest possible p is 0.125.
+  wrote tables to results/tables/

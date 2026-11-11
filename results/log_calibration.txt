@@ -1,0 +1,42 @@
+============================================================================================
+BENIGN CALIBRATION: PROMISED vs REACHED FALSE-ALARM RATE
+============================================================================================
+  promised = budget B, measured on the attack-free recordings
+  reached  = share of benign windows inside the scored (attack)
+             recordings that are above the same threshold
+
+  RF pooled
+    held out    promised  reached  x budget     benign score, 99th pct   worst recording types
+                                               attack-free  in attacks
+    impala         0.01%    1.32%      132x          0.713       0.769   standstill 2%, rpm 2%, force-neutral 1%
+    traverse       0.01%   13.39%     1339x          0.412       0.562   speed 14%, force-neutral 16%, rpm 15%
+    silverado      0.01%    0.02%        2x          0.736       0.875   triple 0%, rpm 0%, double 0%
+    forester       0.01%    7.21%      721x          0.726       0.870   rpm 11%, double 8%, systematic 7%
+
+  MLP pooled
+    held out    promised  reached  x budget     benign score, 99th pct   worst recording types
+                                               attack-free  in attacks
+    impala         0.01%    9.23%      923x          0.092       0.951   standstill 11%, force-neutral 11%, rpm 11%
+    traverse       0.01%   21.02%     2102x          0.001       0.984   speed 25%, rpm 23%, force-neutral 21%
+    silverado      0.01%    0.00%        0x          0.972       0.989   speed 0%
+    forester       0.01%    2.60%      260x          0.138       0.978   systematic 3%, double 3%, fuzzing 3%
+
+  MLP FedAvg
+    held out    promised  reached  x budget     benign score, 99th pct   worst recording types
+                                               attack-free  in attacks
+    impala         0.01%    4.02%      402x          0.038       0.999   standstill 4%, force-neutral 5%, rpm 4%
+    traverse       0.01%   31.70%     3170x          0.005       0.967   speed 36%, rpm 37%, force-neutral 31%
+    silverado      0.01%    0.05%        5x          0.889       0.980   force-neutral 0%, standstill 0%, rpm 0%
+    forester       0.01%    0.17%       17x          0.134       0.995   accessory 22%, DoS 0%, fuzzing 0%
+
+  MLP FedProx
+    held out    promised  reached  x budget     benign score, 99th pct   worst recording types
+                                               attack-free  in attacks
+    impala         0.01%    5.18%      518x          0.070       0.998   standstill 6%, force-neutral 7%, rpm 6%
+    traverse       0.01%   31.06%     3106x          0.006       0.977   speed 35%, rpm 35%, force-neutral 30%
+    silverado      0.01%    0.06%        6x          0.632       0.985   force-neutral 0%, double 0%, triple 0%
+    forester       0.01%    0.19%       19x          0.173       0.987   accessory 29%, DoS 1%, fuzzing 0%
+
+  Scores are on the model's own scale (RF: probability; MLP:
+  probability, shown as a quantile, so compare within a row only).
+  wrote results/tables/calibration_check.csv and calibration_by_recording_type.csv

@@ -1,0 +1,13 @@
+family,held_out,parameter,chosen,criterion,scores,data_used
+mlp,impala,feature_set,stat_sf,"mean inner AUPRC, pooled MLP",all 0.6446; raw 0.2542; stat 0.6723; stat_sf 0.6780,"inner leave-one-source-out on traverse, silverado, forester"
+mlp,impala,budget,t001,"mean inner MCC at cal, pooled MLP (stat_sf)",t001 0.5474; t005 0.4812; t01 0.4194; t05 0.2975,"inner leave-one-source-out on traverse, silverado, forester"
+mlp,impala,fedprox_mu,0.01,"mean inner AUPRC, FedProx (stat_sf)",0.01 0.6561; 0.1 0.6452; 1.0 0.6201,"inner leave-one-source-out on traverse, silverado, forester"
+mlp,traverse,feature_set,stat,"mean inner AUPRC, pooled MLP",all 0.5985; raw 0.1495; stat 0.6412; stat_sf 0.6335,"inner leave-one-source-out on impala, silverado, forester"
+mlp,traverse,budget,t001,"mean inner MCC at cal, pooled MLP (stat)",t001 0.6215; t005 0.5198; t01 0.4659; t05 0.2522,"inner leave-one-source-out on impala, silverado, forester"
+mlp,traverse,fedprox_mu,0.01,"mean inner AUPRC, FedProx (stat)",0.01 0.6224; 0.1 0.6117; 1.0 0.5913,"inner leave-one-source-out on impala, silverado, forester"
+mlp,silverado,feature_set,stat_sf,"mean inner AUPRC, pooled MLP",all 0.5606; raw 0.2575; stat 0.5599; stat_sf 0.5739,"inner leave-one-source-out on impala, traverse, forester"
+mlp,silverado,budget,t001,"mean inner MCC at cal, pooled MLP (stat_sf)",t001 0.4653; t005 0.3633; t01 0.2881; t05 0.1500,"inner leave-one-source-out on impala, traverse, forester"
+mlp,silverado,fedprox_mu,0.1,"mean inner AUPRC, FedProx (stat_sf)",0.01 0.5275; 0.1 0.5331; 1.0 0.5192,"inner leave-one-source-out on impala, traverse, forester"
+mlp,forester,feature_set,stat_sf,"mean inner AUPRC, pooled MLP",all 0.5353; raw 0.2540; stat 0.6257; stat_sf 0.6307,"inner leave-one-source-out on impala, traverse, silverado"
+mlp,forester,budget,t001,"mean inner MCC at cal, pooled MLP (stat_sf)",t001 0.5220; t005 0.4218; t01 0.3675; t05 0.2288,"inner leave-one-source-out on impala, traverse, silverado"
+mlp,forester,fedprox_mu,0.01,"mean inner AUPRC, FedProx (stat_sf)",0.01 0.5761; 0.1 0.5739; 1.0 0.5464,"inner leave-one-source-out on impala, traverse, silverado"

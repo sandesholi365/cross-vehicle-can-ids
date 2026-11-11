@@ -1,0 +1,16 @@
+compared,metric,runs,max_abs_difference
+pooled vs results/mlp_results.csv,auroc,40,0.0
+pooled vs results/mlp_results.csv,auprc,40,0.0
+pooled vs results/mlp_results.csv,mcc_zs,40,0.0
+pooled vs results/mlp_results.csv,mcc_zsb,40,0.0
+pooled vs results/mlp_results.csv,mcc_cal,40,0.0
+pooled vs results/mlp_results.csv,mcc_oracle,40,0.0
+fedavg vs results/mlp_results.csv,auroc,40,0.0
+fedavg vs results/mlp_results.csv,auprc,40,0.0
+fedavg vs results/mlp_results.csv,mcc_zs,40,0.0
+fedavg vs results/mlp_results.csv,mcc_zsb,40,0.0
+fedavg vs results/mlp_results.csv,mcc_cal,40,0.0
+fedavg vs results/mlp_results.csv,mcc_oracle,40,0.0
+avg_weights vs explain_arms fedavg_20x1,auroc,20,0.0
+avg_weights vs explain_arms fedavg_20x1,mcc_zs,20,0.0
+avg_weights vs explain_arms fedavg_20x1,fpr_zs,20,0.0

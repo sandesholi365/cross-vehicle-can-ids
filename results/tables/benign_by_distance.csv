@@ -1,0 +1,33 @@
+model,held_out,bucket,windows,false_alarms,rate,budget
+RF pooled,impala,next to an attack (1 window),2514,39,0.015513126491646777,0.0001
+RF pooled,impala,2-5 windows away,1070,10,0.009345794392523364,0.0001
+RF pooled,impala,6-20 windows away,1074,13,0.012104283054003724,0.0001
+RF pooled,impala,more than 20 windows away,201983,2663,0.01318427788477248,0.0001
+RF pooled,traverse,next to an attack (1 window),1662,140,0.0842358604091456,0.0001
+RF pooled,traverse,2-5 windows away,2879,296,0.10281347690170198,0.0001
+RF pooled,traverse,6-20 windows away,4145,550,0.13268998793727382,0.0001
+RF pooled,traverse,more than 20 windows away,489089,65644,0.1342168807722112,0.0001
+RF pooled,silverado,next to an attack (1 window),10083,1,9.917683229197659e-05,0.0001
+RF pooled,silverado,2-5 windows away,3040,2,0.0006578947368421052,0.0001
+RF pooled,silverado,6-20 windows away,3106,0,0.0,0.0001
+RF pooled,silverado,more than 20 windows away,260872,65,0.0002491643411328161,0.0001
+RF pooled,forester,next to an attack (1 window),1268,100,0.07886435331230283,0.0001
+RF pooled,forester,2-5 windows away,680,32,0.047058823529411764,0.0001
+RF pooled,forester,6-20 windows away,2451,148,0.06038351693186454,0.0001
+RF pooled,forester,more than 20 windows away,250783,18126,0.07227762647388379,0.0001
+MLP pooled,impala,next to an attack (1 window),2514,290,0.11535401750198886,0.0001
+MLP pooled,impala,2-5 windows away,1070,78,0.07289719626168224,0.0001
+MLP pooled,impala,6-20 windows away,1074,114,0.10614525139664804,0.0001
+MLP pooled,impala,more than 20 windows away,201983,18601,0.0920919087249917,0.0001
+MLP pooled,traverse,next to an attack (1 window),1662,262,0.15764139590854392,0.0001
+MLP pooled,traverse,2-5 windows away,2879,557,0.19346995484543245,0.0001
+MLP pooled,traverse,6-20 windows away,4145,934,0.2253317249698432,0.0001
+MLP pooled,traverse,more than 20 windows away,489089,102894,0.2103788880960316,0.0001
+MLP pooled,silverado,next to an attack (1 window),10083,0,0.0,0.0001
+MLP pooled,silverado,2-5 windows away,3040,0,0.0,0.0001
+MLP pooled,silverado,6-20 windows away,3106,0,0.0,0.0001
+MLP pooled,silverado,more than 20 windows away,260872,1,3.8332975558894785e-06,0.0001
+MLP pooled,forester,next to an attack (1 window),1268,18,0.014195583596214511,0.0001
+MLP pooled,forester,2-5 windows away,680,15,0.022058823529411766,0.0001
+MLP pooled,forester,6-20 windows away,2451,65,0.026519787841697267,0.0001
+MLP pooled,forester,more than 20 windows away,250783,6537,0.026066360159978947,0.0001

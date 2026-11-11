@@ -1,0 +1,204 @@
+loading features ...
+  impala     fit  116,079  calib  20,392  test  113,423   as target: attack-free  32,183 / scored  217,711 (11,070 attack)
+  traverse   fit  224,431  calib  39,519  test  268,647   as target: attack-free  14,632 / scored  517,965 (20,190 attack)
+  silverado  fit  145,901  calib  25,661  test  154,536   as target: attack-free  30,067 / scored  296,031 (18,930 attack)
+  forester   fit  125,037  calib  21,974  test  145,934   as target: attack-free  12,563 / scored  280,382 (25,200 attack)
+  road       attack-free 241,491 windows; scored: fabrication 16,953 (7,856 attack); masquerade 15,698 (7,395 attack)
+
+====================================================================================
+RANDOM FOREST: selection on the four CAN-Train-and-Test vehicles
+====================================================================================
+    inner: train traverse+silverado+forester -> impala     raw      AUPRC 0.234   t001 0.232  t005 0.279  t01 0.293  t05 0.276
+    inner: train traverse+silverado+forester -> impala     stat     AUPRC 0.470   t001 0.411  t005 0.372  t01 0.359  t05 0.352
+    inner: train traverse+silverado+forester -> impala     stat_sf  AUPRC 0.432   t001 0.400  t005 0.290  t01 0.257  t05 0.202
+    inner: train traverse+silverado+forester -> impala     all      AUPRC 0.556   t001 0.527  t005 0.478  t01 0.466  t05 0.436
+    inner: train impala+silverado+forester -> traverse   raw      AUPRC 0.483   t001 0.574  t005 0.581  t01 0.578  t05 0.532
+    inner: train impala+silverado+forester -> traverse   stat     AUPRC 0.484   t001 0.196  t005 0.129  t01 0.097  t05 0.091
+    inner: train impala+silverado+forester -> traverse   stat_sf  AUPRC 0.694   t001 0.315  t005 0.155  t01 0.113  t05 0.085
+    inner: train impala+silverado+forester -> traverse   all      AUPRC 0.708   t001 0.318  t005 0.227  t01 0.222  t05 0.215
+    inner: train impala+traverse+forester -> silverado  raw      AUPRC 0.181   t001 0.288  t005 0.288  t01 0.273  t05 0.223
+    inner: train impala+traverse+forester -> silverado  stat     AUPRC 0.828   t001 0.787  t005 0.796  t01 0.805  t05 0.458
+    inner: train impala+traverse+forester -> silverado  stat_sf  AUPRC 0.848   t001 0.831  t005 0.768  t01 0.646  t05 0.378
+    inner: train impala+traverse+forester -> silverado  all      AUPRC 0.763   t001 0.741  t005 0.746  t01 0.708  t05 0.491
+    inner: train impala+traverse+silverado -> forester   raw      AUPRC 0.241   t001 0.243  t005 0.260  t01 0.264  t05 0.254
+    inner: train impala+traverse+silverado -> forester   stat     AUPRC 0.832   t001 0.670  t005 0.604  t01 0.507  t05 0.281
+    inner: train impala+traverse+silverado -> forester   stat_sf  AUPRC 0.822   t001 0.793  t005 0.728  t01 0.628  t05 0.254
+    inner: train impala+traverse+silverado -> forester   all      AUPRC 0.810   t001 0.588  t005 0.437  t01 0.359  t05 0.162
+  selected for road: feature set all, budget t001 (0.01% false alarms)
+
+feature set: raw
+  single           impala                              15s  zs 0.000  cal 0.000  oracle 0.106  AUROC 0.522
+  single           traverse                            31s  zs 0.000  cal 0.037  oracle 0.216  AUROC 0.644
+  single           silverado                           18s  zs 0.000  cal 0.000  oracle 0.101  AUROC 0.496
+  single           forester                            15s  zs -0.017  cal -0.007  oracle 0.056  AUROC 0.526
+  pooled           impala+traverse+silverado+forester  57s  zs 0.000  cal 0.058  oracle 0.119  AUROC 0.539
+  pooled_balanced  impala+traverse+silverado+forester  69s  zs 0.000  cal 0.048  oracle 0.057  AUROC 0.499
+  pooled_matched   impala+traverse+silverado+forester  20s  zs 0.000  cal 0.020  oracle 0.162  AUROC 0.585
+
+feature set: stat
+  single           impala                              14s  zs 0.178  cal 0.014  oracle 0.444  AUROC 0.677
+  single           traverse                            30s  zs 0.188  cal 0.009  oracle 0.258  AUROC 0.630
+  single           silverado                           19s  zs 0.351  cal -0.008  oracle 0.357  AUROC 0.566
+  single           forester                            14s  zs 0.007  cal 0.017  oracle 0.447  AUROC 0.746
+  pooled           impala+traverse+silverado+forester  64s  zs 0.200  cal 0.054  oracle 0.291  AUROC 0.602
+  pooled_balanced  impala+traverse+silverado+forester  76s  zs 0.201  cal 0.030  oracle 0.315  AUROC 0.611
+  pooled_matched   impala+traverse+silverado+forester  22s  zs 0.203  cal 0.011  oracle 0.243  AUROC 0.578
+
+feature set: stat_sf
+  single           impala                              12s  zs 0.004  cal 0.012  oracle 0.164  AUROC 0.582
+  single           traverse                            27s  zs 0.296  cal -0.010  oracle 0.313  AUROC 0.592
+  single           silverado                           17s  zs 0.280  cal -0.051  oracle 0.375  AUROC 0.569
+  single           forester                            13s  zs 0.168  cal 0.029  oracle 0.416  AUROC 0.670
+  pooled           impala+traverse+silverado+forester  60s  zs 0.107  cal 0.052  oracle 0.193  AUROC 0.528
+  pooled_balanced  impala+traverse+silverado+forester  68s  zs 0.119  cal 0.028  oracle 0.195  AUROC 0.510
+  pooled_matched   impala+traverse+silverado+forester  20s  zs 0.092  cal 0.037  oracle 0.197  AUROC 0.503
+
+feature set: all   <- selected
+  single           impala                              23s  zs 0.000  cal 0.000  oracle 0.376  AUROC 0.657
+  single           traverse                            54s  zs 0.000  cal 0.001  oracle 0.183  AUROC 0.573
+  single           silverado                           31s  zs 0.000  cal 0.017  oracle 0.359  AUROC 0.588
+  single           forester                            22s  zs 0.000  cal 0.001  oracle 0.444  AUROC 0.757
+  pooled           impala+traverse+silverado+forester 100s  zs 0.000  cal 0.012  oracle 0.256  AUROC 0.626
+  pooled_balanced  impala+traverse+silverado+forester 124s  zs 0.000  cal 0.014  oracle 0.353  AUROC 0.652
+  pooled_matched   impala+traverse+silverado+forester  39s  zs 0.000  cal -0.007  oracle 0.294  AUROC 0.645
+
+====================================================================================
+MLP: selection on the four CAN-Train-and-Test vehicles
+====================================================================================
+    inner: traverse+silverado+forester -> impala     raw      AUPRC 0.256
+    inner: traverse+silverado+forester -> impala     stat     AUPRC 0.482
+    inner: traverse+silverado+forester -> impala     stat_sf  AUPRC 0.550
+    inner: traverse+silverado+forester -> impala     all      AUPRC 0.517
+    inner: impala+silverado+forester -> traverse   raw      AUPRC 0.428
+    inner: impala+silverado+forester -> traverse   stat     AUPRC 0.566
+    inner: impala+silverado+forester -> traverse   stat_sf  AUPRC 0.579
+    inner: impala+silverado+forester -> traverse   all      AUPRC 0.621
+    inner: impala+traverse+forester -> silverado  raw      AUPRC 0.237
+    inner: impala+traverse+forester -> silverado  stat     AUPRC 0.747
+    inner: impala+traverse+forester -> silverado  stat_sf  AUPRC 0.758
+    inner: impala+traverse+forester -> silverado  all      AUPRC 0.720
+    inner: impala+traverse+silverado -> forester   raw      AUPRC 0.172
+    inner: impala+traverse+silverado -> forester   stat     AUPRC 0.816
+    inner: impala+traverse+silverado -> forester   stat_sf  AUPRC 0.802
+    inner: impala+traverse+silverado -> forester   all      AUPRC 0.644
+    inner: traverse+silverado+forester -> impala     FedProx mu=0.01  AUPRC 0.439
+    inner: traverse+silverado+forester -> impala     FedProx mu=0.1   AUPRC 0.406
+    inner: traverse+silverado+forester -> impala     FedProx mu=1.0   AUPRC 0.381
+    inner: impala+silverado+forester -> traverse   FedProx mu=0.01  AUPRC 0.564
+    inner: impala+silverado+forester -> traverse   FedProx mu=0.1   AUPRC 0.537
+    inner: impala+silverado+forester -> traverse   FedProx mu=1.0   AUPRC 0.539
+    inner: impala+traverse+forester -> silverado  FedProx mu=0.01  AUPRC 0.666
+    inner: impala+traverse+forester -> silverado  FedProx mu=0.1   AUPRC 0.654
+    inner: impala+traverse+forester -> silverado  FedProx mu=1.0   AUPRC 0.641
+    inner: impala+traverse+silverado -> forester   FedProx mu=0.01  AUPRC 0.755
+    inner: impala+traverse+silverado -> forester   FedProx mu=0.1   AUPRC 0.750
+    inner: impala+traverse+silverado -> forester   FedProx mu=1.0   AUPRC 0.722
+  selected for road: feature set stat_sf, budget t001 (0.01%), mu 0.01
+
+  features stat_sf, budget t001, mu 0.01
+  seed 0
+    single:impala        3s   zs 0.609  cal 0.014  oracle 0.615  AUPRC 0.797
+    single:traverse      5s   zs 0.096  cal 0.005  oracle 0.386  AUPRC 0.526
+    single:silverado     3s   zs 0.437  cal 0.000  oracle 0.615  AUPRC 0.714
+    single:forester      3s   zs 0.340  cal 0.008  oracle 0.557  AUPRC 0.687
+    pooled              16s   zs 0.250  cal -0.007  oracle 0.375  AUPRC 0.445
+    fedavg              16s   zs 0.512  cal 0.000  oracle 0.522  AUPRC 0.628
+    fedprox_mu0.01      19s   zs 0.477  cal 0.000  oracle 0.514  AUPRC 0.611
+    fedprox_mu0.1       18s   zs 0.500  cal 0.000  oracle 0.540  AUPRC 0.683
+    fedprox_mu1.0       18s   zs 0.582  cal 0.012  oracle 0.583  AUPRC 0.758
+  seed 1
+    single:impala        3s   zs 0.005  cal 0.014  oracle 0.338  AUPRC 0.593
+    single:traverse      5s   zs 0.092  cal 0.008  oracle 0.523  AUPRC 0.768
+    single:silverado     3s   zs 0.385  cal 0.018  oracle 0.643  AUPRC 0.839
+    single:forester      3s   zs 0.499  cal 0.000  oracle 0.545  AUPRC 0.692
+    pooled              17s   zs 0.254  cal -0.007  oracle 0.305  AUPRC 0.425
+    fedavg              14s   zs 0.602  cal 0.014  oracle 0.604  AUPRC 0.749
+    fedprox_mu0.01      18s   zs 0.658  cal 0.023  oracle 0.661  AUPRC 0.813
+    fedprox_mu0.1       18s   zs 0.534  cal 0.014  oracle 0.588  AUPRC 0.737
+    fedprox_mu1.0       19s   zs 0.537  cal 0.001  oracle 0.586  AUPRC 0.720
+  seed 2
+    single:impala        3s   zs 0.223  cal 0.012  oracle 0.328  AUPRC 0.659
+    single:traverse      5s   zs 0.085  cal -0.007  oracle 0.286  AUPRC 0.471
+    single:silverado     4s   zs 0.462  cal 0.000  oracle 0.608  AUPRC 0.652
+    single:forester      3s   zs 0.606  cal 0.000  oracle 0.624  AUPRC 0.756
+    pooled              15s   zs 0.324  cal -0.007  oracle 0.505  AUPRC 0.593
+    fedavg              15s   zs 0.607  cal 0.000  oracle 0.630  AUPRC 0.706
+    fedprox_mu0.01      18s   zs 0.616  cal 0.000  oracle 0.617  AUPRC 0.745
+    fedprox_mu0.1       19s   zs 0.663  cal 0.008  oracle 0.669  AUPRC 0.771
+    fedprox_mu1.0       19s   zs 0.351  cal 0.000  oracle 0.624  AUPRC 0.745
+  seed 3
+    single:impala        3s   zs 0.056  cal 0.018  oracle 0.356  AUPRC 0.706
+    single:traverse      5s   zs 0.067  cal 0.017  oracle 0.343  AUPRC 0.497
+    single:silverado     3s   zs 0.327  cal 0.000  oracle 0.608  AUPRC 0.799
+    single:forester      3s   zs 0.540  cal 0.000  oracle 0.621  AUPRC 0.750
+    pooled              15s   zs 0.311  cal 0.008  oracle 0.520  AUPRC 0.545
+    fedavg              14s   zs 0.508  cal 0.000  oracle 0.551  AUPRC 0.741
+    fedprox_mu0.01      19s   zs 0.552  cal 0.024  oracle 0.638  AUPRC 0.817
+    fedprox_mu0.1       18s   zs 0.622  cal 0.014  oracle 0.636  AUPRC 0.764
+    fedprox_mu1.0       18s   zs 0.584  cal 0.001  oracle 0.588  AUPRC 0.751
+  seed 4
+    single:impala        3s   zs 0.142  cal 0.020  oracle 0.536  AUPRC 0.737
+    single:traverse      5s   zs 0.184  cal 0.000  oracle 0.343  AUPRC 0.587
+    single:silverado     3s   zs 0.421  cal -0.007  oracle 0.600  AUPRC 0.730
+    single:forester      3s   zs 0.316  cal 0.014  oracle 0.489  AUPRC 0.666
+    pooled              15s   zs 0.294  cal 0.000  oracle 0.424  AUPRC 0.509
+    fedavg              14s   zs 0.460  cal 0.000  oracle 0.470  AUPRC 0.612
+    fedprox_mu0.01      18s   zs 0.535  cal 0.000  oracle 0.535  AUPRC 0.652
+    fedprox_mu0.1       18s   zs 0.525  cal 0.012  oracle 0.573  AUPRC 0.721
+    fedprox_mu1.0       18s   zs 0.455  cal 0.025  oracle 0.572  AUPRC 0.758
+  seed 5
+    single:impala        3s   zs 0.430  cal 0.014  oracle 0.530  AUPRC 0.724
+    single:traverse      5s   zs 0.109  cal -0.007  oracle 0.250  AUPRC 0.468
+    single:silverado     4s   zs 0.451  cal 0.000  oracle 0.579  AUPRC 0.723
+    single:forester      3s   zs 0.450  cal 0.000  oracle 0.514  AUPRC 0.701
+    pooled              14s   zs 0.253  cal 0.017  oracle 0.475  AUPRC 0.653
+    fedavg              14s   zs 0.538  cal 0.014  oracle 0.566  AUPRC 0.742
+    fedprox_mu0.01      18s   zs 0.500  cal 0.010  oracle 0.591  AUPRC 0.756
+    fedprox_mu0.1       19s   zs 0.471  cal 0.015  oracle 0.517  AUPRC 0.751
+    fedprox_mu1.0       18s   zs 0.364  cal 0.014  oracle 0.480  AUPRC 0.750
+  seed 6
+    single:impala        3s   zs -0.056  cal 0.014  oracle 0.055  AUPRC 0.394
+    single:traverse      5s   zs 0.085  cal 0.008  oracle 0.451  AUPRC 0.596
+    single:silverado     3s   zs 0.516  cal -0.003  oracle 0.592  AUPRC 0.649
+    single:forester      3s   zs 0.494  cal 0.014  oracle 0.629  AUPRC 0.763
+    pooled              14s   zs 0.335  cal 0.000  oracle 0.420  AUPRC 0.467
+    fedavg              14s   zs 0.575  cal 0.008  oracle 0.574  AUPRC 0.705
+    fedprox_mu0.01      19s   zs 0.603  cal 0.000  oracle 0.605  AUPRC 0.737
+    fedprox_mu0.1       18s   zs 0.610  cal 0.009  oracle 0.611  AUPRC 0.773
+    fedprox_mu1.0       19s   zs 0.553  cal 0.014  oracle 0.622  AUPRC 0.779
+  seed 7
+    single:impala        3s   zs 0.158  cal 0.012  oracle 0.401  AUPRC 0.629
+    single:traverse      6s   zs 0.117  cal -0.007  oracle 0.465  AUPRC 0.662
+    single:silverado     4s   zs 0.386  cal 0.022  oracle 0.619  AUPRC 0.822
+    single:forester      3s   zs 0.524  cal 0.000  oracle 0.546  AUPRC 0.708
+    pooled              15s   zs 0.355  cal 0.005  oracle 0.519  AUPRC 0.571
+    fedavg              15s   zs 0.393  cal -0.007  oracle 0.504  AUPRC 0.670
+    fedprox_mu0.01      19s   zs 0.394  cal 0.012  oracle 0.483  AUPRC 0.652
+    fedprox_mu0.1       18s   zs 0.437  cal -0.007  oracle 0.535  AUPRC 0.690
+    fedprox_mu1.0       19s   zs 0.489  cal 0.012  oracle 0.535  AUPRC 0.729
+  seed 8
+    single:impala        3s   zs 0.210  cal 0.014  oracle 0.439  AUPRC 0.704
+    single:traverse      5s   zs 0.112  cal 0.021  oracle 0.661  AUPRC 0.809
+    single:silverado     3s   zs 0.467  cal 0.018  oracle 0.586  AUPRC 0.638
+    single:forester      3s   zs 0.421  cal 0.020  oracle 0.526  AUPRC 0.675
+    pooled              14s   zs 0.225  cal -0.010  oracle 0.420  AUPRC 0.474
+    fedavg              14s   zs 0.559  cal 0.008  oracle 0.584  AUPRC 0.693
+    fedprox_mu0.01      18s   zs 0.580  cal 0.014  oracle 0.580  AUPRC 0.700
+    fedprox_mu0.1       19s   zs 0.550  cal 0.017  oracle 0.607  AUPRC 0.713
+    fedprox_mu1.0       19s   zs 0.484  cal 0.008  oracle 0.514  AUPRC 0.760
+  seed 9
+    single:impala        3s   zs -0.007  cal 0.012  oracle 0.331  AUPRC 0.629
+    single:traverse      5s   zs 0.127  cal 0.007  oracle 0.499  AUPRC 0.699
+    single:silverado     3s   zs 0.389  cal 0.014  oracle 0.645  AUPRC 0.811
+    single:forester      3s   zs 0.473  cal 0.000  oracle 0.560  AUPRC 0.720
+    pooled              14s   zs 0.265  cal 0.017  oracle 0.299  AUPRC 0.522
+    fedavg              14s   zs 0.554  cal 0.018  oracle 0.625  AUPRC 0.776
+    fedprox_mu0.01      18s   zs 0.596  cal 0.008  oracle 0.620  AUPRC 0.732
+    fedprox_mu0.1       18s   zs 0.604  cal 0.012  oracle 0.603  AUPRC 0.708
+    fedprox_mu1.0       18s   zs 0.576  cal 0.000  oracle 0.583  AUPRC 0.759
+
+####################################################################################
+  RF  chosen on CAN-Train-and-Test: features all, budget t001
+  MLP chosen on CAN-Train-and-Test: features stat_sf, budget t001, mu 0.01
+  total runtime 69 min
+  saved to results/road/  (summary: python src/experiments/analyse_road.py)

@@ -1,0 +1,18 @@
+# No CAN data in this repository
+data/
+*.log
+*.parquet
+*.npy
+*.npz
+*.pt
+*.pkl
+*.joblib
+**/scores/
+
+# Python and system files
+__pycache__/
+*.pyc
+.DS_Store
+__MACOSX/
+.venv/
+venv/

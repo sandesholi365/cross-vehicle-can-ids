@@ -1,0 +1,6 @@
+compared,metric,runs,max_abs_difference
+avg_weights vs explain_arms fedavg_20x1,auroc,20,0.0
+avg_weights vs explain_arms fedavg_20x1,mcc_zs,20,0.0
+avg_weights vs explain_arms fedavg_20x1,fpr_zs,20,0.0
+pooled vs saved mlp_results,auroc,20,0.0
+pooled vs saved mlp_results,mcc_zs,20,0.0

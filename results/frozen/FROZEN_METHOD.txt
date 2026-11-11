@@ -1,0 +1,231 @@
+FROZEN METHOD   (frozen on 2026-10-30, freeze id e9c9ba7daad165484ed0043a6648c128)
+
+Rules:
+  - Nothing is chosen, tuned or changed on CrySyS or ROAD. Every choice was made on CAN-Train-and-Test (CTT) by the inner leave-one-source-out loop over all four vehicles.
+  - Final models are trained on all four CTT vehicles (fit windows); the scaler is fitted on those windows only. MLPs use the ten evaluation seeds 0-9; the RF uses its one seed.
+  - Thresholds: zs = MCC-optimal on the CTT calibration windows; zsb = the selected budget B on CTT held-out attack-free windows; cal = budget B on the external dataset's attack-free traffic (CrySyS: the 26 benign traces; ROAD: the ambient captures); oracle = upper bound only.
+  - CrySyS only, reported next to cal and decided now: cal_loso = budget B on the benign traces of the OTHER scenarios, so the threshold never comes from the very trace that the attacked trace replays (every CrySyS attacked trace replays its scenario's benign trace, so plain cal is calibrated on the same normal traffic it is scored on).
+  - CrySyS labels: only traces that passed every check of crysys_labels.py (label_report.csv, passed = True); frame labels from labels/<trace>.npy, never the JSON markers; window = attack if it holds at least one attack frame; uncertain windows are left out of every window-level result and count as attack windows for alarm episodes.
+  - Scored sets are evaluated separately: CrySyS fabrication and masquerade; ROAD fabrication and masquerade (as in the thesis). Attack-free recordings are never scored.
+  - Direction 1 settings: avg_weights, ens_logit, ens_prob (three vehicle members, 20 epochs, same start), interp_sel at the frozen alpha, rand_avg_weights and rand_fedavg (matched random partition of the four vehicles' fit windows), next to pooled and FedAvg.
+  - Direction 2: the frozen rule of each arm (pooled, FedAvg), threshold (zs, cal), family (k-of-n, CUSUM) and limit (1, 10 per hour) is applied unchanged; episodes merged over 1 s (5 s as sensitivity); false alarm = alarm on a benign window at least 10 windows from an attack episode whose evidence holds no attack window.
+  - Each external dataset is run once. A finished run writes COMPLETED and is never repeated; an interrupted run continues where it stopped, with the same frozen files.
+
+Choices made on CAN-Train-and-Test only:
+  RF:  feature set all, budget t001
+  MLP: feature set stat_sf, budget t001, FedProx mu 0.01
+  Direction 1: alpha 0.4
+  Direction 2 rules:
+    pooled  zs   kofn   limit  1.0/h: 20-of-20  (limit not met on CTT)
+    pooled  zs   kofn   limit 10.0/h: 18-of-20
+    pooled  zs   cusum  limit  1.0/h: cusum k0.25 h0.5
+    pooled  zs   cusum  limit 10.0/h: cusum k0.25 h0.25
+    pooled  cal  kofn   limit  1.0/h: 20-of-20
+    pooled  cal  kofn   limit 10.0/h: 19-of-20
+    pooled  cal  cusum  limit  1.0/h: cusum k0.25 h0.25
+    pooled  cal  cusum  limit 10.0/h: cusum k0.25 h0.1
+    fedavg  zs   kofn   limit  1.0/h: 9-of-10
+    fedavg  zs   kofn   limit 10.0/h: 5-of-5
+    fedavg  zs   cusum  limit  1.0/h: cusum k0 h8
+    fedavg  zs   cusum  limit 10.0/h: cusum k0 h1
+    fedavg  cal  kofn   limit  1.0/h: 20-of-20  (limit not met on CTT)
+    fedavg  cal  kofn   limit 10.0/h: 20-of-20  (limit not met on CTT)
+    fedavg  cal  cusum  limit  1.0/h: cusum k0.25 h1
+    fedavg  cal  cusum  limit 10.0/h: cusum k0.25 h0.5
+
+CrySyS traces used: {'masquerade': 624, 'fabrication': 592}; left out: {'fabrication': 32}
+
+Settings:
+{
+  "data": {
+    "window_messages": 100,
+    "split_seed": 42,
+    "calibration_fraction": 0.15,
+    "threshold_candidates": 300,
+    "threshold_tie_tolerance": 0.005,
+    "budgets": {
+      "t001": 0.0001,
+      "t005": 0.0005,
+      "t01": 0.001,
+      "t05": 0.005
+    },
+    "feature_sets": [
+      "raw",
+      "stat",
+      "stat_sf",
+      "all"
+    ],
+    "stat_scale_free": [
+      "stat_iat_cv",
+      "stat_iat_max_ratio",
+      "stat_iat_min_ratio",
+      "stat_id_entropy_norm",
+      "stat_unique_id_ratio",
+      "stat_top_id_frac",
+      "stat_repeat_id_frac",
+      "stat_repeat_payload_frac",
+      "stat_byte_change_rate"
+    ],
+    "ctt_vehicles": [
+      "impala",
+      "traverse",
+      "silverado",
+      "forester"
+    ]
+  },
+  "random_forest": {
+    "trees": 300,
+    "min_samples_leaf": 2,
+    "max_train_windows": 400000,
+    "seed": 42,
+    "pooled_modes": [
+      "pooled_3",
+      "pooled_3_balanced",
+      "pooled_3_matched"
+    ]
+  },
+  "mlp": {
+    "hidden": [
+      64,
+      32
+    ],
+    "norm": "LayerNorm (no BatchNorm)",
+    "rounds": 10,
+    "local_epochs": 2,
+    "central_epochs": 20,
+    "batch": 512,
+    "lr": 0.0003,
+    "weight_decay": 0.0001,
+    "grad_clip": 1.0,
+    "pos_weight_cap": 5.0,
+    "mu_values": [
+      0.01,
+      0.1,
+      1.0
+    ],
+    "evaluation_seeds": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "selection_seeds": [
+      100,
+      101,
+      102
+    ],
+    "scaler": "median/IQR on the source training windows, then arcsinh"
+  },
+  "direction1": {
+    "settings": [
+      "pooled",
+      "fedavg",
+      "avg_weights",
+      "ens_logit",
+      "ens_prob",
+      "interp_sel",
+      "rand_avg_weights",
+      "rand_fedavg"
+    ],
+    "member_epochs": 20,
+    "same_start": "every model of a seed starts from new_model(n, seed)",
+    "alpha_grid": [
+      0.0,
+      0.1,
+      0.2,
+      0.3,
+      0.4,
+      0.5,
+      0.6,
+      0.7,
+      0.8,
+      0.9,
+      1.0
+    ],
+    "alpha_tie": 0.005,
+    "ece_bins": 15,
+    "benign_quantiles": {
+      "q90": 0.9,
+      "q99": 0.99,
+      "q999": 0.999,
+      "q9999": 0.9999
+    },
+    "random_partition_seed": "7000 + seed",
+    "random_partition": "matched to the vehicle clients in windows and attack windows; every window once"
+  },
+  "direction2": {
+    "arms": [
+      "pooled",
+      "fedavg"
+    ],
+    "thresholds": [
+      "zs",
+      "cal"
+    ],
+    "kofn_n": [
+      1,
+      3,
+      5,
+      10,
+      20
+    ],
+    "cusum_kappa": [
+      -0.5,
+      -0.25,
+      0.0,
+      0.25,
+      0.5,
+      1.0
+    ],
+    "cusum_h": [
+      0.1,
+      0.25,
+      0.5,
+      1.0,
+      2.0,
+      4.0,
+      8.0,
+      16.0
+    ],
+    "limits_per_hour": [
+      1.0,
+      10.0
+    ],
+    "episode_gaps_s": [
+      1.0,
+      5.0
+    ],
+    "selection_gap_s": 1.0,
+    "clear_windows": 10,
+    "tie": 0.005
+  },
+  "crysys_labels": {
+    "window": 100,
+    "tol_s": 0.004,
+    "late_frac": 1.5,
+    "late_cap_s": 0.03,
+    "inj_search_s": 3.0,
+    "inj_run": 15,
+    "max_loss": 0.01,
+    "fast_period_s": 0.02,
+    "shift_run": 11,
+    "nontarget_window_s": 0.1,
+    "offset_try": 4,
+    "inj_window_s": 0.025,
+    "offset_keep": 6,
+    "offset_sample": 2000,
+    "offset_same_s": 0.002,
+    "marker_tol_s": 0.1,
+    "marker_search_before_s": 1.0,
+    "marker_clip_s": 0.3,
+    "f5_tol_periods": 3.0
+  }
+}
+
+MD5 of every script and input file: see frozen_config.json

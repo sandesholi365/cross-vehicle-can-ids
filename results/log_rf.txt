@@ -1,0 +1,185 @@
+loading features ...
+  impala     fit  116,079  calib  20,392  test  113,423   as target: attack-free  32,183 / scored  217,711 (11,070 attack)
+  traverse   fit  224,431  calib  39,519  test  268,647   as target: attack-free  14,632 / scored  517,965 (20,190 attack)
+  silverado  fit  145,901  calib  25,661  test  154,536   as target: attack-free  30,067 / scored  296,031 (18,930 attack)
+  forester   fit  125,037  calib  21,974  test  145,934   as target: attack-free  12,563 / scored  280,382 (25,200 attack)
+
+====================================================================================
+1. SOURCE-ONLY SELECTION
+====================================================================================
+
+  held out impala (not used here)
+    inner: train silverado+forester   -> traverse   raw      AUPRC 0.555   t001 0.607  t005 0.621  t01 0.624  t05 0.608
+    inner: train silverado+forester   -> traverse   stat     AUPRC 0.497   t001 0.220  t005 0.143  t01 0.129  t05 0.118
+    inner: train silverado+forester   -> traverse   stat_sf  AUPRC 0.692   t001 0.348  t005 0.281  t01 0.254  t05 0.168
+    inner: train silverado+forester   -> traverse   all      AUPRC 0.618   t001 0.310  t005 0.200  t01 0.194  t05 0.183
+    inner: train traverse+forester    -> silverado  raw      AUPRC 0.180   t001 0.283  t005 0.286  t01 0.278  t05 0.220
+    inner: train traverse+forester    -> silverado  stat     AUPRC 0.848   t001 0.819  t005 0.842  t01 0.837  t05 0.501
+    inner: train traverse+forester    -> silverado  stat_sf  AUPRC 0.853   t001 0.860  t005 0.710  t01 0.583  t05 0.336
+    inner: train traverse+forester    -> silverado  all      AUPRC 0.768   t001 0.741  t005 0.744  t01 0.730  t05 0.544
+    inner: train traverse+silverado   -> forester   raw      AUPRC 0.179   t001 0.222  t005 0.224  t01 0.223  t05 0.202
+    inner: train traverse+silverado   -> forester   stat     AUPRC 0.806   t001 0.791  t005 0.674  t01 0.578  t05 0.424
+    inner: train traverse+silverado   -> forester   stat_sf  AUPRC 0.438   t001 0.393  t005 0.357  t01 0.346  t05 0.227
+    inner: train traverse+silverado   -> forester   all      AUPRC 0.832   t001 0.811  t005 0.795  t01 0.772  t05 0.566
+  selected for impala: feature set all, budget t001 (0.01% false alarms)
+
+  held out traverse (not used here)
+    inner: train silverado+forester   -> impala     raw      AUPRC 0.192   t001 0.243  t005 0.276  t01 0.269  t05 0.228
+    inner: train silverado+forester   -> impala     stat     AUPRC 0.485   t001 0.422  t005 0.396  t01 0.372  t05 0.318
+    inner: train silverado+forester   -> impala     stat_sf  AUPRC 0.449   t001 0.401  t005 0.321  t01 0.261  t05 0.236
+    inner: train silverado+forester   -> impala     all      AUPRC 0.545   t001 0.649  t005 0.615  t01 0.596  t05 0.513
+    inner: train impala+forester      -> silverado  raw      AUPRC 0.138   t001 0.158  t005 0.179  t01 0.189  t05 0.185
+    inner: train impala+forester      -> silverado  stat     AUPRC 0.628   t001 0.640  t005 0.606  t01 0.557  t05 0.063
+    inner: train impala+forester      -> silverado  stat_sf  AUPRC 0.585   t001 0.512  t005 0.369  t01 0.338  t05 0.104
+    inner: train impala+forester      -> silverado  all      AUPRC 0.796   t001 0.764  t005 0.712  t01 0.615  t05 0.137
+    inner: train impala+silverado     -> forester   raw      AUPRC 0.246   t001 0.208  t005 0.216  t01 0.218  t05 0.209
+    inner: train impala+silverado     -> forester   stat     AUPRC 0.795   t001 0.827  t005 0.540  t01 0.411  t05 0.219
+    inner: train impala+silverado     -> forester   stat_sf  AUPRC 0.803   t001 0.831  t005 0.681  t01 0.480  t05 0.252
+    inner: train impala+silverado     -> forester   all      AUPRC 0.780   t001 0.594  t005 0.349  t01 0.218  t05 0.066
+  selected for traverse: feature set all, budget t001 (0.01% false alarms)
+
+  held out silverado (not used here)
+    inner: train traverse+forester    -> impala     raw      AUPRC 0.252   t001 0.279  t005 0.311  t01 0.307  t05 0.263
+    inner: train traverse+forester    -> impala     stat     AUPRC 0.461   t001 0.427  t005 0.414  t01 0.410  t05 0.395
+    inner: train traverse+forester    -> impala     stat_sf  AUPRC 0.444   t001 0.496  t005 0.333  t01 0.290  t05 0.221
+    inner: train traverse+forester    -> impala     all      AUPRC 0.541   t001 0.535  t005 0.450  t01 0.432  t05 0.403
+    inner: train impala+forester      -> traverse   raw      AUPRC 0.401   t001 0.496  t005 0.510  t01 0.508  t05 0.453
+    inner: train impala+forester      -> traverse   stat     AUPRC 0.582   t001 0.325  t005 0.154  t01 0.095  t05 0.082
+    inner: train impala+forester      -> traverse   stat_sf  AUPRC 0.591   t001 0.353  t005 0.339  t01 0.327  t05 0.299
+    inner: train impala+forester      -> traverse   all      AUPRC 0.687   t001 0.546  t005 0.417  t01 0.264  t05 0.190
+    inner: train impala+traverse      -> forester   raw      AUPRC 0.186   t001 0.225  t005 0.208  t01 0.196  t05 0.143
+    inner: train impala+traverse      -> forester   stat     AUPRC 0.831   t001 0.660  t005 0.509  t01 0.445  t05 0.257
+    inner: train impala+traverse      -> forester   stat_sf  AUPRC 0.823   t001 0.860  t005 0.628  t01 0.549  t05 0.253
+    inner: train impala+traverse      -> forester   all      AUPRC 0.789   t001 0.384  t005 0.290  t01 0.247  t05 0.143
+  selected for silverado: feature set all, budget t001 (0.01% false alarms)
+
+  held out forester (not used here)
+    inner: train traverse+silverado   -> impala     raw      AUPRC 0.220   t001 0.236  t005 0.242  t01 0.244  t05 0.258
+    inner: train traverse+silverado   -> impala     stat     AUPRC 0.637   t001 0.621  t005 0.664  t01 0.668  t05 0.667
+    inner: train traverse+silverado   -> impala     stat_sf  AUPRC 0.359   t001 0.331  t005 0.153  t01 0.123  t05 0.088
+    inner: train traverse+silverado   -> impala     all      AUPRC 0.702   t001 0.743  t005 0.729  t01 0.718  t05 0.687
+    inner: train impala+silverado     -> traverse   raw      AUPRC 0.475   t001 0.557  t005 0.571  t01 0.566  t05 0.515
+    inner: train impala+silverado     -> traverse   stat     AUPRC 0.574   t001 0.274  t005 0.196  t01 0.182  t05 0.181
+    inner: train impala+silverado     -> traverse   stat_sf  AUPRC 0.524   t001 0.299  t005 0.214  t01 0.210  t05 0.206
+    inner: train impala+silverado     -> traverse   all      AUPRC 0.718   t001 0.360  t005 0.243  t01 0.235  t05 0.219
+    inner: train impala+traverse      -> silverado  raw      AUPRC 0.178   t001 0.255  t005 0.286  t01 0.282  t05 0.230
+    inner: train impala+traverse      -> silverado  stat     AUPRC 0.750   t001 0.763  t005 0.753  t01 0.738  t05 0.491
+    inner: train impala+traverse      -> silverado  stat_sf  AUPRC 0.850   t001 0.841  t005 0.671  t01 0.572  t05 0.408
+    inner: train impala+traverse      -> silverado  all      AUPRC 0.722   t001 0.664  t005 0.715  t01 0.694  t05 0.463
+  selected for forester: feature set all, budget t001 (0.01% false alarms)
+
+====================================================================================
+2. EVALUATION ON THE HELD-OUT VEHICLE
+====================================================================================
+
+feature set: raw  (15 features)
+  single impala     done
+  single traverse   done
+  single silverado  done
+  single forester   done
+  pooled_3           hold out impala       58s   zs 0.068  zsb 0.277  cal 0.232  oracle 0.295  AUROC 0.670  AUPRC 0.234
+  pooled_3_balanced  hold out impala       59s   zs 0.055  zsb 0.309  cal 0.235  oracle 0.310  AUROC 0.665  AUPRC 0.232
+  pooled_3_matched   hold out impala       25s   zs 0.075  zsb 0.308  cal 0.287  oracle 0.319  AUROC 0.670  AUPRC 0.243
+  pooled_3           hold out traverse     52s   zs 0.462  zsb 0.461  cal 0.574  oracle 0.574  AUROC 0.743  AUPRC 0.483
+  pooled_3_balanced  hold out traverse     54s   zs 0.506  zsb 0.459  cal 0.570  oracle 0.571  AUROC 0.744  AUPRC 0.483
+  pooled_3_matched   hold out traverse     20s   zs 0.551  zsb 0.477  cal 0.584  oracle 0.602  AUROC 0.741  AUPRC 0.490
+  pooled_3           hold out silverado    54s   zs -0.003  zsb -0.044  cal 0.288  oracle 0.291  AUROC 0.483  AUPRC 0.181
+  pooled_3_balanced  hold out silverado    55s   zs 0.000  zsb -0.051  cal 0.266  oracle 0.276  AUROC 0.460  AUPRC 0.166
+  pooled_3_matched   hold out silverado    25s   zs 0.000  zsb -0.062  cal 0.299  oracle 0.298  AUROC 0.478  AUPRC 0.179
+  pooled_3           hold out forester     54s   zs 0.013  zsb 0.088  cal 0.243  oracle 0.258  AUROC 0.639  AUPRC 0.241
+  pooled_3_balanced  hold out forester     54s   zs 0.012  zsb 0.188  cal 0.213  oracle 0.245  AUROC 0.732  AUPRC 0.293
+  pooled_3_matched   hold out forester     24s   zs 0.016  zsb 0.090  cal 0.228  oracle 0.240  AUROC 0.666  AUPRC 0.234
+
+feature set: stat  (13 features)
+  single impala     done
+  single traverse   done
+  single silverado  done
+  single forester   done
+  pooled_3           hold out impala       63s   zs 0.181  zsb 0.210  cal 0.411  oracle 0.563  AUROC 0.779  AUPRC 0.470
+  pooled_3_balanced  hold out impala       62s   zs 0.183  zsb 0.202  cal 0.411  oracle 0.559  AUROC 0.767  AUPRC 0.452
+  pooled_3_matched   hold out impala       27s   zs 0.188  zsb 0.215  cal 0.491  oracle 0.565  AUROC 0.770  AUPRC 0.480
+  pooled_3           hold out traverse     61s   zs 0.129  zsb 0.070  cal 0.196  oracle 0.578  AUROC 0.779  AUPRC 0.484
+  pooled_3_balanced  hold out traverse     59s   zs 0.128  zsb 0.071  cal 0.218  oracle 0.519  AUROC 0.780  AUPRC 0.465
+  pooled_3_matched   hold out traverse     21s   zs 0.157  zsb 0.086  cal 0.232  oracle 0.629  AUROC 0.795  AUPRC 0.526
+  pooled_3           hold out silverado    58s   zs 0.233  zsb 0.128  cal 0.787  oracle 0.814  AUROC 0.924  AUPRC 0.828
+  pooled_3_balanced  hold out silverado    56s   zs 0.208  zsb 0.105  cal 0.858  oracle 0.886  AUROC 0.925  AUPRC 0.858
+  pooled_3_matched   hold out silverado    24s   zs 0.317  zsb 0.138  cal 0.807  oracle 0.867  AUROC 0.926  AUPRC 0.858
+  pooled_3           hold out forester     57s   zs 0.872  zsb 0.775  cal 0.670  oracle 0.871  AUROC 0.894  AUPRC 0.832
+  pooled_3_balanced  hold out forester     59s   zs 0.872  zsb 0.623  cal 0.634  oracle 0.870  AUROC 0.894  AUPRC 0.831
+  pooled_3_matched   hold out forester     28s   zs 0.872  zsb 0.755  cal 0.733  oracle 0.870  AUROC 0.893  AUPRC 0.830
+
+feature set: stat_sf  (9 features)
+  single impala     done
+  single traverse   done
+  single silverado  done
+  single forester   done
+  pooled_3           hold out impala       62s   zs 0.028  zsb 0.050  cal 0.400  oracle 0.500  AUROC 0.755  AUPRC 0.432
+  pooled_3_balanced  hold out impala       56s   zs 0.038  zsb 0.040  cal 0.439  oracle 0.520  AUROC 0.752  AUPRC 0.440
+  pooled_3_matched   hold out impala       24s   zs 0.021  zsb 0.038  cal 0.420  oracle 0.543  AUROC 0.757  AUPRC 0.475
+  pooled_3           hold out traverse     49s   zs 0.667  zsb 0.426  cal 0.315  oracle 0.700  AUROC 0.860  AUPRC 0.694
+  pooled_3_balanced  hold out traverse     49s   zs 0.659  zsb 0.361  cal 0.281  oracle 0.705  AUROC 0.860  AUPRC 0.696
+  pooled_3_matched   hold out traverse     19s   zs 0.683  zsb 0.382  cal 0.317  oracle 0.737  AUROC 0.854  AUPRC 0.711
+  pooled_3           hold out silverado    52s   zs 0.225  zsb 0.156  cal 0.831  oracle 0.877  AUROC 0.918  AUPRC 0.848
+  pooled_3_balanced  hold out silverado    52s   zs 0.200  zsb 0.134  cal 0.813  oracle 0.873  AUROC 0.914  AUPRC 0.840
+  pooled_3_matched   hold out silverado    23s   zs 0.295  zsb 0.111  cal 0.754  oracle 0.864  AUROC 0.919  AUPRC 0.845
+  pooled_3           hold out forester     50s   zs 0.501  zsb 0.288  cal 0.793  oracle 0.865  AUROC 0.879  AUPRC 0.822
+  pooled_3_balanced  hold out forester     51s   zs 0.477  zsb 0.292  cal 0.772  oracle 0.865  AUROC 0.877  AUPRC 0.820
+  pooled_3_matched   hold out forester     23s   zs 0.606  zsb 0.289  cal 0.866  oracle 0.869  AUROC 0.878  AUPRC 0.820
+
+feature set: all  (28 features)
+  single impala     done
+  single traverse   done
+  single silverado  done
+  single forester   done
+  pooled_3           hold out impala       99s   zs 0.065  zsb 0.107  cal 0.527  oracle 0.627  AUROC 0.801  AUPRC 0.556   <- selected
+  pooled_3_balanced  hold out impala      100s   zs 0.123  zsb 0.127  cal 0.515  oracle 0.633  AUROC 0.784  AUPRC 0.536
+  pooled_3_matched   hold out impala       41s   zs 0.034  zsb 0.203  cal 0.558  oracle 0.629  AUROC 0.771  AUPRC 0.521
+  pooled_3           hold out traverse     85s   zs 0.201  zsb 0.188  cal 0.318  oracle 0.778  AUROC 0.871  AUPRC 0.708   <- selected
+  pooled_3_balanced  hold out traverse     85s   zs 0.198  zsb 0.183  cal 0.413  oracle 0.792  AUROC 0.875  AUPRC 0.728
+  pooled_3_matched   hold out traverse     29s   zs 0.212  zsb 0.212  cal 0.286  oracle 0.816  AUROC 0.880  AUPRC 0.739
+  pooled_3           hold out silverado    86s   zs 0.002  zsb 0.002  cal 0.741  oracle 0.746  AUROC 0.913  AUPRC 0.763   <- selected
+  pooled_3_balanced  hold out silverado    84s   zs 0.005  zsb 0.003  cal 0.743  oracle 0.750  AUROC 0.908  AUPRC 0.775
+  pooled_3_matched   hold out silverado    35s   zs 0.001  zsb 0.034  cal 0.739  oracle 0.796  AUROC 0.917  AUPRC 0.815
+  pooled_3           hold out forester     87s   zs 0.000  zsb 0.000  cal 0.588  oracle 0.835  AUROC 0.893  AUPRC 0.810   <- selected
+  pooled_3_balanced  hold out forester     89s   zs 0.001  zsb 0.000  cal 0.490  oracle 0.840  AUROC 0.903  AUPRC 0.822
+  pooled_3_matched   hold out forester     41s   zs 0.016  zsb 0.000  cal 0.520  oracle 0.836  AUROC 0.883  AUPRC 0.807
+
+
+####################################################################################
+SUMMARY (Random Forest)
+####################################################################################
+
+--- choices made on the source vehicles ---
+  held out impala     feature set all      budget t001
+  held out traverse   feature set all      budget t001
+  held out silverado  feature set all      budget t001
+  held out forester   feature set all      budget t001
+
+--- headline: pooled_3, selected feature set, per held-out vehicle ---
+  held out     AUROC  AUPRC      zero-shot      calibrated  oracle
+                                   zs     zsb          cal        
+  impala       0.801  0.556     0.065   0.107        0.527   0.627
+  traverse     0.871  0.708     0.201   0.188        0.318   0.778
+  silverado    0.913  0.763     0.002   0.002        0.741   0.746
+  forester     0.893  0.810     0.000   0.000        0.588   0.835
+  MEAN         0.869  0.709     0.067   0.074        0.543   0.746
+  (MCC columns; zsb and cal use the same budget, so cal - zsb is the
+   part of the gap that comes from where the threshold sits)
+
+--- feature representation: pooled_3, mean over held-out vehicles ---
+  features     AUROC   AUPRC      zs     cal  oracle
+  raw          0.634   0.285   0.135   0.334   0.354
+  stat         0.844   0.653   0.354   0.516   0.707
+  stat_sf      0.853   0.699   0.355   0.585   0.736
+  all          0.869   0.709   0.067   0.543   0.746
+  (the budget in 'cal' is each fold's selected budget)
+
+--- single vs pooled, selected feature set, MCC at cal ---
+  held out      single  pooled_3  balanced  matched
+  impala         0.649     0.527     0.515     0.558 
+  traverse       0.290     0.318     0.413     0.286 
+  silverado      0.603     0.741     0.743     0.739 
+  forester       0.582     0.588     0.490     0.520 
+
+total runtime 79 min
+saved rf_results.csv, rf_per_attack.csv, rf_importance.csv, rf_selection_log.csv, rf_selected.csv and scores/ in results/

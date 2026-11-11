@@ -1,0 +1,5 @@
+metric,runs_compared,max_abs_difference
+auroc,16,2.332601889420971e-10
+mcc_zs,16,8.326672684688674e-17
+mcc_zsb,16,5.551115123125783e-17
+mcc_cal,16,8.326672684688674e-17

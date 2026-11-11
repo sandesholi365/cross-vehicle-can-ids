@@ -1,0 +1,5 @@
+vehicle,fit_windows,calib_windows,calib_share_of_training,variant,calib_recordings,calib_attack_windows,calib_attack_share,attack_types_without_calib_recording
+impala,102482,33989,0.24905657612239962,recording,4,790,0.023242813851540204,"accessory, attack-free, double, fuzzing, interval, speed, systematic, triple"
+traverse,157967,105983,0.4015268043189998,recording,10,3674,0.034665936989894605,"accessory, attack-free, rpm-accessory, speed-accessory"
+silverado,106462,65100,0.3794546577913524,recording,7,2928,0.044976958525345626,"accessory, attack-free, interval, rpm-accessory, speed, speed-accessory, systematic"
+forester,78918,68093,0.4631830271204196,recording,12,7730,0.11352121363429428,"accessory, attack-free"

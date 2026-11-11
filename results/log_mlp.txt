@@ -1,0 +1,520 @@
+loading features ...
+  impala     fit  116,079  calib  20,392  test  113,423   as target: attack-free  32,183 / scored  217,711 (11,070 attack)
+  traverse   fit  224,431  calib  39,519  test  268,647   as target: attack-free  14,632 / scored  517,965 (20,190 attack)
+  silverado  fit  145,901  calib  25,661  test  154,536   as target: attack-free  30,067 / scored  296,031 (18,930 attack)
+  forester   fit  125,037  calib  21,974  test  145,934   as target: attack-free  12,563 / scored  280,382 (25,200 attack)
+
+====================================================================================
+1. SOURCE-ONLY SELECTION
+====================================================================================
+
+  held out impala (not used here)
+    inner: silverado+forester   -> traverse   raw      AUPRC 0.428
+    inner: silverado+forester   -> traverse   stat     AUPRC 0.470
+    inner: silverado+forester   -> traverse   stat_sf  AUPRC 0.529
+    inner: silverado+forester   -> traverse   all      AUPRC 0.557
+    inner: traverse+forester    -> silverado  raw      AUPRC 0.156
+    inner: traverse+forester    -> silverado  stat     AUPRC 0.759
+    inner: traverse+forester    -> silverado  stat_sf  AUPRC 0.744
+    inner: traverse+forester    -> silverado  all      AUPRC 0.687
+    inner: traverse+silverado   -> forester   raw      AUPRC 0.178
+    inner: traverse+silverado   -> forester   stat     AUPRC 0.788
+    inner: traverse+silverado   -> forester   stat_sf  AUPRC 0.761
+    inner: traverse+silverado   -> forester   all      AUPRC 0.690
+    inner: silverado+forester   -> traverse   FedProx mu=0.01  AUPRC 0.574
+    inner: silverado+forester   -> traverse   FedProx mu=0.1   AUPRC 0.535
+    inner: silverado+forester   -> traverse   FedProx mu=1.0   AUPRC 0.530
+    inner: traverse+forester    -> silverado  FedProx mu=0.01  AUPRC 0.682
+    inner: traverse+forester    -> silverado  FedProx mu=0.1   AUPRC 0.668
+    inner: traverse+forester    -> silverado  FedProx mu=1.0   AUPRC 0.633
+    inner: traverse+silverado   -> forester   FedProx mu=0.01  AUPRC 0.712
+    inner: traverse+silverado   -> forester   FedProx mu=0.1   AUPRC 0.733
+    inner: traverse+silverado   -> forester   FedProx mu=1.0   AUPRC 0.697
+  selected for impala: feature set stat_sf, budget t001 (0.01%), mu 0.01
+  (9.5 min)
+
+  held out traverse (not used here)
+    inner: silverado+forester   -> impala     raw      AUPRC 0.183
+    inner: silverado+forester   -> impala     stat     AUPRC 0.473
+    inner: silverado+forester   -> impala     stat_sf  AUPRC 0.493
+    inner: silverado+forester   -> impala     all      AUPRC 0.471
+    inner: impala+forester      -> silverado  raw      AUPRC 0.196
+    inner: impala+forester      -> silverado  stat     AUPRC 0.661
+    inner: impala+forester      -> silverado  stat_sf  AUPRC 0.600
+    inner: impala+forester      -> silverado  all      AUPRC 0.653
+    inner: impala+silverado     -> forester   raw      AUPRC 0.070
+    inner: impala+silverado     -> forester   stat     AUPRC 0.789
+    inner: impala+silverado     -> forester   stat_sf  AUPRC 0.808
+    inner: impala+silverado     -> forester   all      AUPRC 0.671
+    inner: silverado+forester   -> impala     FedProx mu=0.01  AUPRC 0.452
+    inner: silverado+forester   -> impala     FedProx mu=0.1   AUPRC 0.433
+    inner: silverado+forester   -> impala     FedProx mu=1.0   AUPRC 0.415
+    inner: impala+forester      -> silverado  FedProx mu=0.01  AUPRC 0.645
+    inner: impala+forester      -> silverado  FedProx mu=0.1   AUPRC 0.650
+    inner: impala+forester      -> silverado  FedProx mu=1.0   AUPRC 0.619
+    inner: impala+silverado     -> forester   FedProx mu=0.01  AUPRC 0.769
+    inner: impala+silverado     -> forester   FedProx mu=0.1   AUPRC 0.752
+    inner: impala+silverado     -> forester   FedProx mu=1.0   AUPRC 0.740
+  selected for traverse: feature set stat, budget t001 (0.01%), mu 0.01
+  (7.6 min)
+
+  held out silverado (not used here)
+    inner: traverse+forester    -> impala     raw      AUPRC 0.256
+    inner: traverse+forester    -> impala     stat     AUPRC 0.453
+    inner: traverse+forester    -> impala     stat_sf  AUPRC 0.450
+    inner: traverse+forester    -> impala     all      AUPRC 0.481
+    inner: impala+forester      -> traverse   raw      AUPRC 0.331
+    inner: impala+forester      -> traverse   stat     AUPRC 0.426
+    inner: impala+forester      -> traverse   stat_sf  AUPRC 0.507
+    inner: impala+forester      -> traverse   all      AUPRC 0.581
+    inner: impala+traverse      -> forester   raw      AUPRC 0.186
+    inner: impala+traverse      -> forester   stat     AUPRC 0.802
+    inner: impala+traverse      -> forester   stat_sf  AUPRC 0.765
+    inner: impala+traverse      -> forester   all      AUPRC 0.620
+    inner: traverse+forester    -> impala     FedProx mu=0.01  AUPRC 0.338
+    inner: traverse+forester    -> impala     FedProx mu=0.1   AUPRC 0.356
+    inner: traverse+forester    -> impala     FedProx mu=1.0   AUPRC 0.392
+    inner: impala+forester      -> traverse   FedProx mu=0.01  AUPRC 0.496
+    inner: impala+forester      -> traverse   FedProx mu=0.1   AUPRC 0.493
+    inner: impala+forester      -> traverse   FedProx mu=1.0   AUPRC 0.461
+    inner: impala+traverse      -> forester   FedProx mu=0.01  AUPRC 0.748
+    inner: impala+traverse      -> forester   FedProx mu=0.1   AUPRC 0.751
+    inner: impala+traverse      -> forester   FedProx mu=1.0   AUPRC 0.705
+  selected for silverado: feature set stat_sf, budget t001 (0.01%), mu 0.1
+  (9.3 min)
+
+  held out forester (not used here)
+    inner: traverse+silverado   -> impala     raw      AUPRC 0.235
+    inner: traverse+silverado   -> impala     stat     AUPRC 0.487
+    inner: traverse+silverado   -> impala     stat_sf  AUPRC 0.518
+    inner: traverse+silverado   -> impala     all      AUPRC 0.538
+    inner: impala+silverado     -> traverse   raw      AUPRC 0.396
+    inner: impala+silverado     -> traverse   stat     AUPRC 0.644
+    inner: impala+silverado     -> traverse   stat_sf  AUPRC 0.613
+    inner: impala+silverado     -> traverse   all      AUPRC 0.547
+    inner: impala+traverse      -> silverado  raw      AUPRC 0.132
+    inner: impala+traverse      -> silverado  stat     AUPRC 0.746
+    inner: impala+traverse      -> silverado  stat_sf  AUPRC 0.761
+    inner: impala+traverse      -> silverado  all      AUPRC 0.521
+    inner: traverse+silverado   -> impala     FedProx mu=0.01  AUPRC 0.426
+    inner: traverse+silverado   -> impala     FedProx mu=0.1   AUPRC 0.420
+    inner: traverse+silverado   -> impala     FedProx mu=1.0   AUPRC 0.393
+    inner: impala+silverado     -> traverse   FedProx mu=0.01  AUPRC 0.619
+    inner: impala+silverado     -> traverse   FedProx mu=0.1   AUPRC 0.621
+    inner: impala+silverado     -> traverse   FedProx mu=1.0   AUPRC 0.594
+    inner: impala+traverse      -> silverado  FedProx mu=0.01  AUPRC 0.684
+    inner: impala+traverse      -> silverado  FedProx mu=0.1   AUPRC 0.681
+    inner: impala+traverse      -> silverado  FedProx mu=1.0   AUPRC 0.652
+  selected for forester: feature set stat_sf, budget t001 (0.01%), mu 0.01
+  (9.5 min)
+
+====================================================================================
+2. EVALUATION ON THE HELD-OUT VEHICLE
+====================================================================================
+
+--- hold out impala: features stat_sf, budget t001, mu 0.01; 2.2% of target values beyond 5 SD of the sources ---
+  seed 0
+    single:traverse      5s   zs 0.097  zsb 0.064  cal 0.049  oracle 0.299  AUPRC 0.198
+    single:silverado     3s   zs 0.033  zsb 0.033  cal 0.223  oracle 0.310  AUPRC 0.217
+    single:forester      3s   zs 0.192  zsb 0.106  cal 0.482  oracle 0.531  AUPRC 0.428
+    pooled              12s   zs 0.243  zsb 0.487  cal 0.319  oracle 0.605  AUPRC 0.530
+    fedavg              12s   zs 0.484  zsb 0.485  cal 0.361  oracle 0.486  AUPRC 0.434  drift 1.31
+    fedprox_mu0.01      15s   zs 0.448  zsb 0.469  cal 0.306  oracle 0.498  AUPRC 0.408  drift 0.81
+    fedprox_mu0.1       15s   zs 0.448  zsb 0.492  cal 0.346  oracle 0.500  AUPRC 0.403  drift 0.47
+    fedprox_mu1.0       15s   zs 0.413  zsb 0.394  cal 0.283  oracle 0.498  AUPRC 0.376  drift 0.23
+  seed 1
+    single:traverse      5s   zs 0.167  zsb 0.079  cal 0.332  oracle 0.549  AUPRC 0.476
+    single:silverado     3s   zs 0.034  zsb 0.033  cal 0.403  oracle 0.429  AUPRC 0.336
+    single:forester      3s   zs 0.187  zsb 0.105  cal 0.500  oracle 0.540  AUPRC 0.457
+    pooled              12s   zs 0.193  zsb 0.210  cal 0.506  oracle 0.590  AUPRC 0.536
+    fedavg              11s   zs 0.364  zsb 0.362  cal 0.248  oracle 0.520  AUPRC 0.424  drift 1.32
+    fedprox_mu0.01      15s   zs 0.489  zsb 0.520  cal 0.263  oracle 0.530  AUPRC 0.426  drift 0.81
+    fedprox_mu0.1       15s   zs 0.449  zsb 0.418  cal 0.333  oracle 0.449  AUPRC 0.388  drift 0.47
+    fedprox_mu1.0       15s   zs 0.417  zsb 0.420  cal 0.251  oracle 0.480  AUPRC 0.376  drift 0.25
+  seed 2
+    single:traverse      5s   zs 0.069  zsb 0.038  cal 0.316  oracle 0.374  AUPRC 0.330
+    single:silverado     3s   zs 0.032  zsb 0.030  cal 0.245  oracle 0.402  AUPRC 0.337
+    single:forester      3s   zs 0.211  zsb 0.165  cal 0.397  oracle 0.502  AUPRC 0.418
+    pooled              12s   zs 0.485  zsb 0.561  cal 0.590  oracle 0.593  AUPRC 0.548
+    fedavg              12s   zs 0.504  zsb 0.507  cal 0.341  oracle 0.509  AUPRC 0.438  drift 1.36
+    fedprox_mu0.01      15s   zs 0.496  zsb 0.496  cal 0.385  oracle 0.497  AUPRC 0.421  drift 0.82
+    fedprox_mu0.1       15s   zs 0.473  zsb 0.496  cal 0.392  oracle 0.500  AUPRC 0.408  drift 0.48
+    fedprox_mu1.0       15s   zs 0.375  zsb 0.371  cal 0.218  oracle 0.502  AUPRC 0.390  drift 0.25
+  seed 3
+    single:traverse      5s   zs 0.119  zsb 0.066  cal 0.395  oracle 0.542  AUPRC 0.464
+    single:silverado     3s   zs 0.033  zsb 0.032  cal 0.238  oracle 0.378  AUPRC 0.322
+    single:forester      3s   zs 0.183  zsb 0.127  cal 0.335  oracle 0.523  AUPRC 0.430
+    pooled              12s   zs 0.321  zsb 0.379  cal 0.522  oracle 0.527  AUPRC 0.528
+    fedavg              12s   zs 0.547  zsb 0.393  cal 0.337  oracle 0.556  AUPRC 0.462  drift 1.33
+    fedprox_mu0.01      15s   zs 0.530  zsb 0.383  cal 0.420  oracle 0.540  AUPRC 0.433  drift 0.82
+    fedprox_mu0.1       15s   zs 0.503  zsb 0.491  cal 0.458  oracle 0.534  AUPRC 0.423  drift 0.49
+    fedprox_mu1.0       15s   zs 0.436  zsb 0.335  cal 0.325  oracle 0.516  AUPRC 0.397  drift 0.25
+  seed 4
+    single:traverse      5s   zs 0.102  zsb 0.063  cal 0.518  oracle 0.522  AUPRC 0.456
+    single:silverado     3s   zs 0.014  zsb 0.027  cal 0.265  oracle 0.435  AUPRC 0.325
+    single:forester      3s   zs 0.270  zsb 0.232  cal 0.408  oracle 0.518  AUPRC 0.410
+    pooled              12s   zs 0.257  zsb 0.196  cal 0.487  oracle 0.630  AUPRC 0.585
+    fedavg              12s   zs 0.534  zsb 0.514  cal 0.355  oracle 0.534  AUPRC 0.442  drift 1.33
+    fedprox_mu0.01      15s   zs 0.528  zsb 0.192  cal 0.389  oracle 0.527  AUPRC 0.425  drift 0.84
+    fedprox_mu0.1       15s   zs 0.482  zsb 0.325  cal 0.423  oracle 0.507  AUPRC 0.406  drift 0.49
+    fedprox_mu1.0       15s   zs 0.453  zsb 0.362  cal 0.317  oracle 0.486  AUPRC 0.372  drift 0.24
+  seed 5
+    single:traverse      5s   zs 0.088  zsb 0.055  cal 0.409  oracle 0.525  AUPRC 0.445
+    single:silverado     3s   zs 0.001  zsb 0.011  cal 0.134  oracle 0.137  AUPRC 0.091
+    single:forester      3s   zs 0.366  zsb 0.312  cal 0.492  oracle 0.516  AUPRC 0.426
+    pooled              12s   zs 0.483  zsb 0.509  cal 0.521  oracle 0.521  AUPRC 0.516
+    fedavg              12s   zs 0.505  zsb 0.537  cal 0.314  oracle 0.537  AUPRC 0.455  drift 1.39
+    fedprox_mu0.01      15s   zs 0.494  zsb 0.497  cal 0.303  oracle 0.531  AUPRC 0.433  drift 0.83
+    fedprox_mu0.1       15s   zs 0.480  zsb 0.260  cal 0.366  oracle 0.482  AUPRC 0.396  drift 0.49
+    fedprox_mu1.0       15s   zs 0.315  zsb 0.520  cal 0.316  oracle 0.513  AUPRC 0.382  drift 0.25
+  seed 6
+    single:traverse      5s   zs 0.081  zsb 0.076  cal 0.271  oracle 0.486  AUPRC 0.391
+    single:silverado     3s   zs 0.070  zsb 0.051  cal 0.125  oracle 0.176  AUPRC 0.167
+    single:forester      3s   zs 0.241  zsb 0.110  cal 0.381  oracle 0.532  AUPRC 0.437
+    pooled              12s   zs 0.396  zsb 0.546  cal 0.526  oracle 0.546  AUPRC 0.532
+    fedavg              11s   zs 0.538  zsb 0.538  cal 0.466  oracle 0.538  AUPRC 0.470  drift 1.33
+    fedprox_mu0.01      15s   zs 0.529  zsb 0.500  cal 0.416  oracle 0.531  AUPRC 0.440  drift 0.84
+    fedprox_mu0.1       22s   zs 0.482  zsb 0.501  cal 0.375  oracle 0.508  AUPRC 0.415  drift 0.48
+    fedprox_mu1.0       28s   zs 0.489  zsb 0.528  cal 0.336  oracle 0.516  AUPRC 0.395  drift 0.24
+  seed 7
+    single:traverse      5s   zs 0.105  zsb 0.050  cal 0.404  oracle 0.469  AUPRC 0.413
+    single:silverado     3s   zs 0.033  zsb 0.032  cal 0.181  oracle 0.444  AUPRC 0.370
+    single:forester      3s   zs 0.223  zsb 0.149  cal 0.488  oracle 0.537  AUPRC 0.439
+    pooled              12s   zs 0.314  zsb 0.483  cal 0.573  oracle 0.573  AUPRC 0.541
+    fedavg              12s   zs 0.523  zsb 0.502  cal 0.372  oracle 0.523  AUPRC 0.477  drift 1.31
+    fedprox_mu0.01      15s   zs 0.503  zsb 0.506  cal 0.426  oracle 0.511  AUPRC 0.434  drift 0.84
+    fedprox_mu0.1       15s   zs 0.493  zsb 0.507  cal 0.439  oracle 0.504  AUPRC 0.420  drift 0.49
+    fedprox_mu1.0       15s   zs 0.492  zsb 0.497  cal 0.430  oracle 0.496  AUPRC 0.392  drift 0.26
+  seed 8
+    single:traverse      5s   zs 0.112  zsb 0.068  cal 0.477  oracle 0.543  AUPRC 0.463
+    single:silverado     3s   zs 0.043  zsb 0.045  cal 0.330  oracle 0.471  AUPRC 0.392
+    single:forester      3s   zs 0.243  zsb 0.156  cal 0.355  oracle 0.517  AUPRC 0.433
+    pooled              12s   zs 0.494  zsb 0.537  cal 0.549  oracle 0.550  AUPRC 0.540
+    fedavg              12s   zs 0.553  zsb 0.399  cal 0.354  oracle 0.555  AUPRC 0.463  drift 1.32
+    fedprox_mu0.01      15s   zs 0.494  zsb 0.451  cal 0.420  oracle 0.511  AUPRC 0.429  drift 0.81
+    fedprox_mu0.1       15s   zs 0.468  zsb 0.439  cal 0.440  oracle 0.485  AUPRC 0.404  drift 0.46
+    fedprox_mu1.0       15s   zs 0.437  zsb 0.405  cal 0.397  oracle 0.505  AUPRC 0.396  drift 0.23
+  seed 9
+    single:traverse      5s   zs 0.054  zsb 0.029  cal 0.410  oracle 0.449  AUPRC 0.407
+    single:silverado     3s   zs 0.027  zsb 0.026  cal 0.274  oracle 0.529  AUPRC 0.436
+    single:forester      3s   zs 0.249  zsb 0.132  cal 0.367  oracle 0.522  AUPRC 0.428
+    pooled              12s   zs 0.135  zsb 0.163  cal 0.569  oracle 0.580  AUPRC 0.527
+    fedavg              12s   zs 0.537  zsb 0.534  cal 0.371  oracle 0.557  AUPRC 0.485  drift 1.31
+    fedprox_mu0.01      15s   zs 0.490  zsb 0.415  cal 0.386  oracle 0.504  AUPRC 0.421  drift 0.83
+    fedprox_mu0.1       15s   zs 0.511  zsb 0.498  cal 0.450  oracle 0.516  AUPRC 0.423  drift 0.48
+    fedprox_mu1.0       15s   zs 0.353  zsb 0.278  cal 0.397  oracle 0.514  AUPRC 0.393  drift 0.25
+
+--- hold out traverse: features stat, budget t001, mu 0.01; 0.4% of target values beyond 5 SD of the sources ---
+  seed 0
+    single:impala        3s   zs 0.073  zsb 0.072  cal 0.201  oracle 0.505  AUPRC 0.402
+    single:silverado     4s   zs 0.684  zsb 0.571  cal 0.441  oracle 0.689  AUPRC 0.597
+    single:forester      4s   zs 0.109  zsb 0.036  cal 0.362  oracle 0.553  AUPRC 0.494
+    pooled              10s   zs 0.210  zsb 0.188  cal 0.183  oracle 0.548  AUPRC 0.453
+    fedavg              10s   zs 0.492  zsb 0.632  cal 0.164  oracle 0.644  AUPRC 0.574  drift 1.25
+    fedprox_mu0.01      13s   zs 0.653  zsb 0.635  cal 0.155  oracle 0.664  AUPRC 0.562  drift 0.85
+    fedprox_mu0.1       13s   zs 0.676  zsb 0.583  cal 0.184  oracle 0.677  AUPRC 0.563  drift 0.47
+    fedprox_mu1.0       13s   zs 0.662  zsb 0.635  cal 0.309  oracle 0.657  AUPRC 0.544  drift 0.23
+  seed 1
+    single:impala        3s   zs 0.214  zsb 0.203  cal 0.001  oracle 0.500  AUPRC 0.345
+    single:silverado     4s   zs 0.651  zsb 0.484  cal 0.168  oracle 0.660  AUPRC 0.647
+    single:forester      4s   zs 0.069  zsb 0.037  cal 0.228  oracle 0.638  AUPRC 0.530
+    pooled              10s   zs 0.176  zsb 0.140  cal 0.154  oracle 0.588  AUPRC 0.513
+    fedavg              11s   zs 0.557  zsb 0.682  cal 0.244  oracle 0.682  AUPRC 0.608  drift 1.17
+    fedprox_mu0.01      13s   zs 0.556  zsb 0.581  cal 0.233  oracle 0.677  AUPRC 0.598  drift 0.84
+    fedprox_mu0.1       13s   zs 0.576  zsb 0.251  cal 0.163  oracle 0.644  AUPRC 0.555  drift 0.46
+    fedprox_mu1.0       14s   zs 0.483  zsb 0.289  cal 0.209  oracle 0.618  AUPRC 0.509  drift 0.22
+  seed 2
+    single:impala        3s   zs 0.098  zsb 0.093  cal 0.118  oracle 0.496  AUPRC 0.330
+    single:silverado     4s   zs 0.679  zsb 0.679  cal 0.143  oracle 0.678  AUPRC 0.651
+    single:forester      3s   zs 0.068  zsb 0.029  cal 0.139  oracle 0.436  AUPRC 0.380
+    pooled              10s   zs 0.190  zsb 0.190  cal 0.457  oracle 0.616  AUPRC 0.566
+    fedavg              10s   zs 0.657  zsb 0.682  cal 0.160  oracle 0.697  AUPRC 0.638  drift 1.24
+    fedprox_mu0.01      12s   zs 0.659  zsb 0.627  cal 0.250  oracle 0.707  AUPRC 0.632  drift 0.86
+    fedprox_mu0.1       13s   zs 0.703  zsb 0.675  cal 0.295  oracle 0.706  AUPRC 0.625  drift 0.47
+    fedprox_mu1.0       14s   zs 0.561  zsb 0.632  cal 0.285  oracle 0.636  AUPRC 0.540  drift 0.23
+  seed 3
+    single:impala        3s   zs 0.177  zsb 0.236  cal 0.094  oracle 0.537  AUPRC 0.396
+    single:silverado     4s   zs 0.668  zsb 0.636  cal 0.223  oracle 0.708  AUPRC 0.627
+    single:forester      3s   zs 0.082  zsb 0.029  cal 0.349  oracle 0.433  AUPRC 0.389
+    pooled              10s   zs 0.115  zsb 0.111  cal 0.141  oracle 0.577  AUPRC 0.508
+    fedavg              11s   zs 0.625  zsb 0.647  cal 0.188  oracle 0.678  AUPRC 0.616  drift 1.21
+    fedprox_mu0.01      14s   zs 0.513  zsb 0.625  cal 0.225  oracle 0.635  AUPRC 0.579  drift 0.84
+    fedprox_mu0.1       13s   zs 0.670  zsb 0.645  cal 0.254  oracle 0.669  AUPRC 0.594  drift 0.46
+    fedprox_mu1.0       12s   zs 0.550  zsb 0.565  cal 0.239  oracle 0.589  AUPRC 0.504  drift 0.22
+  seed 4
+    single:impala        3s   zs -0.036  zsb -0.032  cal 0.171  oracle 0.497  AUPRC 0.329
+    single:silverado     4s   zs 0.660  zsb 0.559  cal 0.085  oracle 0.682  AUPRC 0.642
+    single:forester      4s   zs 0.070  zsb 0.027  cal 0.228  oracle 0.567  AUPRC 0.484
+    pooled              11s   zs 0.120  zsb 0.212  cal 0.226  oracle 0.744  AUPRC 0.661
+    fedavg              11s   zs 0.707  zsb 0.686  cal 0.208  oracle 0.707  AUPRC 0.647  drift 1.20
+    fedprox_mu0.01      13s   zs 0.680  zsb 0.651  cal 0.223  oracle 0.693  AUPRC 0.605  drift 0.84
+    fedprox_mu0.1       13s   zs 0.680  zsb 0.643  cal 0.286  oracle 0.678  AUPRC 0.575  drift 0.46
+    fedprox_mu1.0       13s   zs 0.632  zsb 0.616  cal 0.367  oracle 0.632  AUPRC 0.543  drift 0.23
+  seed 5
+    single:impala        3s   zs 0.028  zsb 0.027  cal 0.028  oracle 0.497  AUPRC 0.337
+    single:silverado     4s   zs 0.659  zsb 0.608  cal 0.235  oracle 0.711  AUPRC 0.681
+    single:forester      3s   zs 0.049  zsb 0.025  cal 0.197  oracle 0.565  AUPRC 0.496
+    pooled              10s   zs 0.246  zsb 0.207  cal 0.248  oracle 0.644  AUPRC 0.618
+    fedavg              11s   zs 0.668  zsb 0.651  cal 0.176  oracle 0.687  AUPRC 0.632  drift 1.23
+    fedprox_mu0.01      13s   zs 0.685  zsb 0.684  cal 0.195  oracle 0.687  AUPRC 0.641  drift 0.85
+    fedprox_mu0.1       13s   zs 0.687  zsb 0.688  cal 0.228  oracle 0.687  AUPRC 0.628  drift 0.47
+    fedprox_mu1.0       14s   zs 0.547  zsb 0.514  cal 0.181  oracle 0.614  AUPRC 0.536  drift 0.23
+  seed 6
+    single:impala        3s   zs 0.063  zsb 0.059  cal 0.055  oracle 0.465  AUPRC 0.311
+    single:silverado     4s   zs 0.628  zsb 0.622  cal 0.175  oracle 0.659  AUPRC 0.607
+    single:forester      4s   zs 0.052  zsb 0.027  cal 0.109  oracle 0.584  AUPRC 0.490
+    pooled               9s   zs 0.139  zsb 0.145  cal 0.189  oracle 0.552  AUPRC 0.494
+    fedavg              10s   zs 0.629  zsb 0.658  cal 0.134  oracle 0.658  AUPRC 0.577  drift 1.23
+    fedprox_mu0.01      13s   zs 0.633  zsb 0.633  cal 0.134  oracle 0.645  AUPRC 0.565  drift 0.85
+    fedprox_mu0.1       12s   zs 0.656  zsb 0.639  cal 0.190  oracle 0.657  AUPRC 0.572  drift 0.47
+    fedprox_mu1.0       13s   zs 0.433  zsb 0.473  cal 0.319  oracle 0.529  AUPRC 0.460  drift 0.22
+  seed 7
+    single:impala        3s   zs 0.239  zsb 0.198  cal 0.485  oracle 0.542  AUPRC 0.510
+    single:silverado     4s   zs 0.197  zsb 0.198  cal 0.198  oracle 0.501  AUPRC 0.449
+    single:forester      3s   zs 0.058  zsb 0.035  cal 0.217  oracle 0.614  AUPRC 0.513
+    pooled               9s   zs 0.245  zsb 0.269  cal 0.180  oracle 0.686  AUPRC 0.599
+    fedavg              11s   zs 0.470  zsb 0.524  cal 0.132  oracle 0.587  AUPRC 0.560  drift 1.21
+    fedprox_mu0.01      13s   zs 0.616  zsb 0.602  cal 0.162  oracle 0.622  AUPRC 0.570  drift 0.86
+    fedprox_mu0.1       13s   zs 0.666  zsb 0.668  cal 0.146  oracle 0.666  AUPRC 0.576  drift 0.47
+    fedprox_mu1.0       13s   zs 0.621  zsb 0.540  cal 0.130  oracle 0.621  AUPRC 0.561  drift 0.24
+  seed 8
+    single:impala        3s   zs -0.058  zsb -0.071  cal 0.326  oracle 0.499  AUPRC 0.351
+    single:silverado     4s   zs 0.445  zsb 0.521  cal 0.244  oracle 0.591  AUPRC 0.591
+    single:forester      3s   zs 0.026  zsb 0.022  cal 0.135  oracle 0.557  AUPRC 0.463
+    pooled              11s   zs 0.156  zsb 0.143  cal 0.147  oracle 0.584  AUPRC 0.507
+    fedavg              11s   zs 0.525  zsb 0.592  cal 0.097  oracle 0.601  AUPRC 0.553  drift 1.22
+    fedprox_mu0.01      13s   zs 0.655  zsb 0.628  cal 0.084  oracle 0.657  AUPRC 0.562  drift 0.84
+    fedprox_mu0.1       13s   zs 0.627  zsb 0.628  cal 0.131  oracle 0.650  AUPRC 0.570  drift 0.48
+    fedprox_mu1.0       13s   zs 0.373  zsb 0.194  cal 0.085  oracle 0.463  AUPRC 0.408  drift 0.21
+  seed 9
+    single:impala        3s   zs 0.218  zsb 0.179  cal 0.131  oracle 0.512  AUPRC 0.462
+    single:silverado     4s   zs 0.718  zsb 0.698  cal 0.199  oracle 0.724  AUPRC 0.669
+    single:forester      4s   zs 0.056  zsb 0.030  cal 0.639  oracle 0.646  AUPRC 0.549
+    pooled              10s   zs 0.195  zsb 0.154  cal 0.519  oracle 0.645  AUPRC 0.554
+    fedavg              10s   zs 0.266  zsb 0.617  cal 0.185  oracle 0.653  AUPRC 0.597  drift 1.25
+    fedprox_mu0.01      13s   zs 0.614  zsb 0.637  cal 0.115  oracle 0.685  AUPRC 0.594  drift 0.86
+    fedprox_mu0.1       13s   zs 0.695  zsb 0.695  cal 0.166  oracle 0.696  AUPRC 0.590  drift 0.47
+    fedprox_mu1.0       13s   zs 0.639  zsb 0.588  cal 0.106  oracle 0.639  AUPRC 0.526  drift 0.23
+
+--- hold out silverado: features stat_sf, budget t001, mu 0.1; 8.6% of target values beyond 5 SD of the sources ---
+  seed 0
+    single:impala        3s   zs 0.038  zsb 0.030  cal 0.113  oracle 0.674  AUPRC 0.541
+    single:traverse      6s   zs 0.188  zsb 0.132  cal 0.748  oracle 0.751  AUPRC 0.704
+    single:forester      3s   zs 0.035  zsb 0.008  cal 0.597  oracle 0.664  AUPRC 0.563
+    pooled              12s   zs 0.172  zsb 0.148  cal 0.671  oracle 0.776  AUPRC 0.813
+    fedavg              12s   zs 0.605  zsb 0.409  cal 0.743  oracle 0.744  AUPRC 0.713  drift 1.24
+    fedprox_mu0.01      16s   zs 0.732  zsb 0.332  cal 0.745  oracle 0.753  AUPRC 0.688  drift 0.72
+    fedprox_mu0.1       15s   zs 0.629  zsb 0.241  cal 0.743  oracle 0.746  AUPRC 0.688  drift 0.47
+    fedprox_mu1.0       15s   zs 0.676  zsb 0.324  cal 0.720  oracle 0.736  AUPRC 0.681  drift 0.23
+  seed 1
+    single:impala        3s   zs -0.006  zsb 0.037  cal 0.350  oracle 0.634  AUPRC 0.516
+    single:traverse      6s   zs 0.328  zsb 0.203  cal 0.345  oracle 0.755  AUPRC 0.714
+    single:forester      3s   zs 0.087  zsb 0.050  cal 0.121  oracle 0.529  AUPRC 0.423
+    pooled              12s   zs 0.292  zsb 0.270  cal 0.660  oracle 0.744  AUPRC 0.750
+    fedavg              13s   zs 0.387  zsb 0.226  cal 0.708  oracle 0.750  AUPRC 0.704  drift 1.23
+    fedprox_mu0.01      16s   zs 0.498  zsb 0.128  cal 0.714  oracle 0.755  AUPRC 0.675  drift 0.74
+    fedprox_mu0.1       15s   zs 0.450  zsb 0.193  cal 0.737  oracle 0.738  AUPRC 0.675  drift 0.46
+    fedprox_mu1.0       15s   zs 0.668  zsb 0.203  cal 0.717  oracle 0.725  AUPRC 0.668  drift 0.24
+  seed 2
+    single:impala        3s   zs 0.041  zsb 0.041  cal 0.267  oracle 0.646  AUPRC 0.504
+    single:traverse      6s   zs 0.209  zsb 0.112  cal 0.754  oracle 0.755  AUPRC 0.711
+    single:forester      3s   zs 0.035  zsb 0.012  cal 0.379  oracle 0.386  AUPRC 0.382
+    pooled              11s   zs 0.181  zsb 0.138  cal 0.728  oracle 0.728  AUPRC 0.711
+    fedavg              13s   zs 0.358  zsb 0.189  cal 0.696  oracle 0.731  AUPRC 0.691  drift 1.24
+    fedprox_mu0.01      15s   zs 0.339  zsb 0.181  cal 0.692  oracle 0.691  AUPRC 0.651  drift 0.75
+    fedprox_mu0.1       15s   zs 0.200  zsb 0.114  cal 0.641  oracle 0.674  AUPRC 0.621  drift 0.47
+    fedprox_mu1.0       16s   zs 0.375  zsb 0.107  cal 0.601  oracle 0.647  AUPRC 0.604  drift 0.24
+  seed 3
+    single:impala        3s   zs 0.025  zsb 0.023  cal 0.494  oracle 0.634  AUPRC 0.506
+    single:traverse      6s   zs 0.286  zsb 0.178  cal 0.725  oracle 0.729  AUPRC 0.721
+    single:forester      3s   zs 0.037  zsb 0.031  cal 0.592  oracle 0.604  AUPRC 0.507
+    pooled              11s   zs 0.204  zsb 0.173  cal 0.698  oracle 0.741  AUPRC 0.764
+    fedavg              12s   zs 0.398  zsb 0.171  cal 0.665  oracle 0.688  AUPRC 0.663  drift 1.24
+    fedprox_mu0.01      15s   zs 0.525  zsb 0.211  cal 0.700  oracle 0.711  AUPRC 0.671  drift 0.74
+    fedprox_mu0.1       16s   zs 0.338  zsb 0.166  cal 0.668  oracle 0.669  AUPRC 0.650  drift 0.48
+    fedprox_mu1.0       15s   zs 0.407  zsb 0.229  cal 0.601  oracle 0.665  AUPRC 0.613  drift 0.24
+  seed 4
+    single:impala        3s   zs 0.041  zsb 0.038  cal 0.055  oracle 0.662  AUPRC 0.529
+    single:traverse      5s   zs 0.274  zsb 0.182  cal 0.299  oracle 0.730  AUPRC 0.717
+    single:forester      3s   zs 0.069  zsb 0.025  cal 0.459  oracle 0.644  AUPRC 0.548
+    pooled              11s   zs 0.117  zsb 0.094  cal 0.708  oracle 0.742  AUPRC 0.754
+    fedavg              12s   zs 0.533  zsb 0.328  cal 0.728  oracle 0.735  AUPRC 0.705  drift 1.20
+    fedprox_mu0.01      16s   zs 0.624  zsb 0.268  cal 0.734  oracle 0.739  AUPRC 0.687  drift 0.71
+    fedprox_mu0.1       15s   zs 0.278  zsb 0.132  cal 0.634  oracle 0.647  AUPRC 0.614  drift 0.47
+    fedprox_mu1.0       15s   zs 0.292  zsb 0.075  cal 0.660  oracle 0.673  AUPRC 0.617  drift 0.24
+  seed 5
+    single:impala        3s   zs 0.225  zsb 0.044  cal 0.141  oracle 0.617  AUPRC 0.488
+    single:traverse      5s   zs 0.266  zsb 0.172  cal 0.690  oracle 0.750  AUPRC 0.707
+    single:forester      3s   zs 0.014  zsb 0.006  cal 0.650  oracle 0.655  AUPRC 0.578
+    pooled              12s   zs 0.123  zsb 0.108  cal 0.189  oracle 0.596  AUPRC 0.568
+    fedavg              11s   zs 0.732  zsb 0.731  cal 0.705  oracle 0.731  AUPRC 0.696  drift 1.23
+    fedprox_mu0.01      15s   zs 0.465  zsb 0.290  cal 0.712  oracle 0.728  AUPRC 0.679  drift 0.74
+    fedprox_mu0.1       14s   zs 0.247  zsb 0.101  cal 0.692  oracle 0.712  AUPRC 0.670  drift 0.47
+    fedprox_mu1.0       16s   zs 0.573  zsb 0.385  cal 0.665  oracle 0.683  AUPRC 0.640  drift 0.23
+  seed 6
+    single:impala        3s   zs 0.033  zsb 0.034  cal 0.578  oracle 0.647  AUPRC 0.526
+    single:traverse      6s   zs 0.242  zsb 0.104  cal 0.755  oracle 0.758  AUPRC 0.746
+    single:forester      3s   zs 0.046  zsb 0.009  cal 0.155  oracle 0.338  AUPRC 0.284
+    pooled              12s   zs 0.226  zsb 0.204  cal 0.751  oracle 0.769  AUPRC 0.790
+    fedavg              12s   zs 0.393  zsb 0.157  cal 0.736  oracle 0.742  AUPRC 0.707  drift 1.19
+    fedprox_mu0.01      15s   zs 0.521  zsb 0.216  cal 0.731  oracle 0.735  AUPRC 0.684  drift 0.73
+    fedprox_mu0.1       16s   zs 0.301  zsb 0.158  cal 0.701  oracle 0.709  AUPRC 0.664  drift 0.47
+    fedprox_mu1.0       16s   zs 0.519  zsb 0.460  cal 0.608  oracle 0.712  AUPRC 0.648  drift 0.25
+  seed 7
+    single:impala        3s   zs 0.131  zsb 0.165  cal 0.267  oracle 0.654  AUPRC 0.535
+    single:traverse      6s   zs 0.367  zsb 0.104  cal 0.751  oracle 0.777  AUPRC 0.786
+    single:forester      4s   zs 0.029  zsb 0.008  cal 0.638  oracle 0.651  AUPRC 0.562
+    pooled              13s   zs 0.287  zsb 0.241  cal 0.740  oracle 0.782  AUPRC 0.802
+    fedavg              11s   zs 0.634  zsb 0.331  cal 0.739  oracle 0.747  AUPRC 0.715  drift 1.22
+    fedprox_mu0.01      15s   zs 0.522  zsb 0.206  cal 0.751  oracle 0.753  AUPRC 0.685  drift 0.74
+    fedprox_mu0.1       15s   zs 0.407  zsb 0.144  cal 0.721  oracle 0.742  AUPRC 0.675  drift 0.49
+    fedprox_mu1.0       15s   zs 0.369  zsb 0.249  cal 0.709  oracle 0.721  AUPRC 0.660  drift 0.24
+  seed 8
+    single:impala        3s   zs 0.028  zsb 0.023  cal 0.144  oracle 0.658  AUPRC 0.533
+    single:traverse      6s   zs 0.288  zsb 0.133  cal 0.761  oracle 0.772  AUPRC 0.741
+    single:forester      4s   zs 0.066  zsb 0.054  cal 0.210  oracle 0.645  AUPRC 0.536
+    pooled              12s   zs 0.266  zsb 0.242  cal 0.712  oracle 0.715  AUPRC 0.721
+    fedavg              13s   zs 0.373  zsb 0.186  cal 0.717  oracle 0.724  AUPRC 0.690  drift 1.24
+    fedprox_mu0.01      15s   zs 0.469  zsb 0.200  cal 0.728  oracle 0.728  AUPRC 0.679  drift 0.72
+    fedprox_mu0.1       15s   zs 0.330  zsb 0.178  cal 0.712  oracle 0.713  AUPRC 0.668  drift 0.47
+    fedprox_mu1.0       15s   zs 0.608  zsb 0.389  cal 0.704  oracle 0.704  AUPRC 0.663  drift 0.23
+  seed 9
+    single:impala        3s   zs 0.013  zsb 0.001  cal 0.115  oracle 0.672  AUPRC 0.539
+    single:traverse      6s   zs 0.271  zsb 0.197  cal 0.744  oracle 0.753  AUPRC 0.753
+    single:forester      4s   zs 0.036  zsb 0.030  cal 0.263  oracle 0.643  AUPRC 0.547
+    pooled              11s   zs 0.226  zsb 0.198  cal 0.699  oracle 0.798  AUPRC 0.813
+    fedavg              13s   zs 0.404  zsb 0.291  cal 0.751  oracle 0.752  AUPRC 0.720  drift 1.22
+    fedprox_mu0.01      14s   zs 0.356  zsb 0.216  cal 0.693  oracle 0.732  AUPRC 0.682  drift 0.75
+    fedprox_mu0.1       15s   zs 0.437  zsb 0.309  cal 0.718  oracle 0.718  AUPRC 0.670  drift 0.47
+    fedprox_mu1.0       15s   zs 0.537  zsb 0.376  cal 0.682  oracle 0.727  AUPRC 0.667  drift 0.25
+
+--- hold out forester: features stat_sf, budget t001, mu 0.01; 0.9% of target values beyond 5 SD of the sources ---
+  seed 0
+    single:impala        3s   zs 0.156  zsb 0.105  cal 0.730  oracle 0.734  AUPRC 0.687
+    single:traverse      6s   zs 0.188  zsb 0.139  cal 0.657  oracle 0.737  AUPRC 0.714
+    single:silverado     4s   zs 0.080  zsb 0.062  cal 0.709  oracle 0.740  AUPRC 0.702
+    pooled              13s   zs 0.455  zsb 0.404  cal 0.717  oracle 0.819  AUPRC 0.799
+    fedavg              13s   zs 0.667  zsb 0.789  cal 0.806  oracle 0.807  AUPRC 0.765  drift 1.29
+    fedprox_mu0.01      16s   zs 0.741  zsb 0.773  cal 0.804  oracle 0.803  AUPRC 0.755  drift 0.75
+    fedprox_mu0.1       16s   zs 0.792  zsb 0.784  cal 0.735  oracle 0.793  AUPRC 0.740  drift 0.40
+    fedprox_mu1.0       16s   zs 0.741  zsb 0.780  cal 0.657  oracle 0.795  AUPRC 0.739  drift 0.21
+  seed 1
+    single:impala        3s   zs 0.232  zsb 0.203  cal 0.545  oracle 0.654  AUPRC 0.645
+    single:traverse      6s   zs 0.210  zsb 0.155  cal 0.793  oracle 0.800  AUPRC 0.761
+    single:silverado     4s   zs 0.108  zsb 0.107  cal 0.057  oracle 0.290  AUPRC 0.188
+    pooled              12s   zs 0.459  zsb 0.542  cal 0.783  oracle 0.788  AUPRC 0.776
+    fedavg              12s   zs 0.514  zsb 0.436  cal 0.774  oracle 0.774  AUPRC 0.751  drift 1.29
+    fedprox_mu0.01      15s   zs 0.676  zsb 0.767  cal 0.765  oracle 0.790  AUPRC 0.746  drift 0.77
+    fedprox_mu0.1       15s   zs 0.761  zsb 0.606  cal 0.775  oracle 0.780  AUPRC 0.748  drift 0.40
+    fedprox_mu1.0       16s   zs 0.712  zsb 0.758  cal 0.755  oracle 0.757  AUPRC 0.747  drift 0.22
+  seed 2
+    single:impala        3s   zs 0.258  zsb 0.249  cal 0.421  oracle 0.717  AUPRC 0.680
+    single:traverse      6s   zs 0.176  zsb 0.154  cal 0.167  oracle 0.331  AUPRC 0.321
+    single:silverado     3s   zs 0.101  zsb 0.141  cal 0.599  oracle 0.663  AUPRC 0.642
+    pooled              12s   zs 0.495  zsb 0.497  cal 0.777  oracle 0.811  AUPRC 0.792
+    fedavg              13s   zs 0.457  zsb 0.512  cal 0.740  oracle 0.740  AUPRC 0.730  drift 1.31
+    fedprox_mu0.01      15s   zs 0.710  zsb 0.714  cal 0.719  oracle 0.721  AUPRC 0.716  drift 0.76
+    fedprox_mu0.1       16s   zs 0.738  zsb 0.727  cal 0.732  oracle 0.738  AUPRC 0.716  drift 0.41
+    fedprox_mu1.0       16s   zs 0.679  zsb 0.729  cal 0.707  oracle 0.732  AUPRC 0.706  drift 0.22
+  seed 3
+    single:impala        3s   zs 0.380  zsb 0.364  cal 0.761  oracle 0.777  AUPRC 0.735
+    single:traverse      6s   zs 0.223  zsb 0.172  cal 0.760  oracle 0.786  AUPRC 0.764
+    single:silverado     4s   zs 0.094  zsb 0.076  cal 0.296  oracle 0.544  AUPRC 0.548
+    pooled              12s   zs 0.423  zsb 0.388  cal 0.726  oracle 0.797  AUPRC 0.785
+    fedavg              12s   zs 0.712  zsb 0.725  cal 0.786  oracle 0.787  AUPRC 0.757  drift 1.31
+    fedprox_mu0.01      16s   zs 0.694  zsb 0.749  cal 0.766  oracle 0.766  AUPRC 0.744  drift 0.73
+    fedprox_mu0.1       15s   zs 0.787  zsb 0.786  cal 0.784  oracle 0.787  AUPRC 0.744  drift 0.40
+    fedprox_mu1.0       16s   zs 0.774  zsb 0.779  cal 0.749  oracle 0.779  AUPRC 0.736  drift 0.22
+  seed 4
+    single:impala        3s   zs 0.189  zsb 0.202  cal 0.699  oracle 0.699  AUPRC 0.673
+    single:traverse      5s   zs 0.294  zsb 0.185  cal 0.774  oracle 0.784  AUPRC 0.760
+    single:silverado     4s   zs 0.050  zsb 0.056  cal 0.663  oracle 0.681  AUPRC 0.673
+    pooled              12s   zs 0.503  zsb 0.592  cal 0.797  oracle 0.810  AUPRC 0.793
+    fedavg              13s   zs 0.710  zsb 0.759  cal 0.805  oracle 0.817  AUPRC 0.772  drift 1.28
+    fedprox_mu0.01      15s   zs 0.734  zsb 0.744  cal 0.746  oracle 0.746  AUPRC 0.741  drift 0.76
+    fedprox_mu0.1       16s   zs 0.748  zsb 0.706  cal 0.741  oracle 0.761  AUPRC 0.731  drift 0.41
+    fedprox_mu1.0       16s   zs 0.650  zsb 0.752  cal 0.654  oracle 0.755  AUPRC 0.729  drift 0.21
+  seed 5
+    single:impala        3s   zs 0.181  zsb 0.266  cal 0.712  oracle 0.761  AUPRC 0.700
+    single:traverse      6s   zs 0.267  zsb 0.193  cal 0.805  oracle 0.810  AUPRC 0.765
+    single:silverado     4s   zs 0.033  zsb 0.062  cal 0.558  oracle 0.562  AUPRC 0.505
+    pooled              12s   zs 0.443  zsb 0.433  cal 0.750  oracle 0.780  AUPRC 0.774
+    fedavg              13s   zs 0.506  zsb 0.765  cal 0.593  oracle 0.785  AUPRC 0.755  drift 1.35
+    fedprox_mu0.01      15s   zs 0.674  zsb 0.693  cal 0.758  oracle 0.758  AUPRC 0.739  drift 0.75
+    fedprox_mu0.1       15s   zs 0.729  zsb 0.703  cal 0.766  oracle 0.765  AUPRC 0.737  drift 0.41
+    fedprox_mu1.0       16s   zs 0.707  zsb 0.551  cal 0.587  oracle 0.764  AUPRC 0.723  drift 0.21
+  seed 6
+    single:impala        3s   zs 0.212  zsb 0.221  cal 0.490  oracle 0.699  AUPRC 0.709
+    single:traverse      6s   zs 0.183  zsb 0.179  cal 0.747  oracle 0.791  AUPRC 0.760
+    single:silverado     4s   zs 0.185  zsb 0.138  cal 0.731  oracle 0.741  AUPRC 0.713
+    pooled              13s   zs 0.598  zsb 0.537  cal 0.805  oracle 0.808  AUPRC 0.798
+    fedavg              13s   zs 0.798  zsb 0.792  cal 0.792  oracle 0.798  AUPRC 0.766  drift 1.24
+    fedprox_mu0.01      15s   zs 0.800  zsb 0.794  cal 0.800  oracle 0.798  AUPRC 0.757  drift 0.77
+    fedprox_mu0.1       16s   zs 0.788  zsb 0.778  cal 0.787  oracle 0.792  AUPRC 0.753  drift 0.41
+    fedprox_mu1.0       17s   zs 0.769  zsb 0.727  cal 0.757  oracle 0.770  AUPRC 0.750  drift 0.21
+  seed 7
+    single:impala        3s   zs 0.372  zsb 0.438  cal 0.745  oracle 0.745  AUPRC 0.714
+    single:traverse      6s   zs 0.234  zsb 0.136  cal 0.557  oracle 0.734  AUPRC 0.716
+    single:silverado     4s   zs 0.134  zsb 0.096  cal 0.658  oracle 0.676  AUPRC 0.646
+    pooled              12s   zs 0.527  zsb 0.574  cal 0.790  oracle 0.822  AUPRC 0.808
+    fedavg              12s   zs 0.767  zsb 0.715  cal 0.806  oracle 0.805  AUPRC 0.774  drift 1.29
+    fedprox_mu0.01      17s   zs 0.784  zsb 0.784  cal 0.780  oracle 0.784  AUPRC 0.741  drift 0.76
+    fedprox_mu0.1       17s   zs 0.755  zsb 0.726  cal 0.757  oracle 0.757  AUPRC 0.719  drift 0.41
+    fedprox_mu1.0       17s   zs 0.629  zsb 0.597  cal 0.614  oracle 0.701  AUPRC 0.689  drift 0.22
+  seed 8
+    single:impala        3s   zs 0.316  zsb 0.345  cal 0.747  oracle 0.754  AUPRC 0.720
+    single:traverse      6s   zs 0.260  zsb 0.172  cal 0.714  oracle 0.749  AUPRC 0.746
+    single:silverado     4s   zs 0.099  zsb 0.092  cal 0.660  oracle 0.684  AUPRC 0.657
+    pooled              12s   zs 0.447  zsb 0.414  cal 0.802  oracle 0.809  AUPRC 0.805
+    fedavg              12s   zs 0.575  zsb 0.568  cal 0.747  oracle 0.792  AUPRC 0.764  drift 1.30
+    fedprox_mu0.01      16s   zs 0.672  zsb 0.761  cal 0.737  oracle 0.793  AUPRC 0.751  drift 0.75
+    fedprox_mu0.1       16s   zs 0.790  zsb 0.791  cal 0.783  oracle 0.791  AUPRC 0.737  drift 0.40
+    fedprox_mu1.0       17s   zs 0.743  zsb 0.778  cal 0.776  oracle 0.783  AUPRC 0.748  drift 0.20
+  seed 9
+    single:impala        3s   zs 0.172  zsb 0.202  cal 0.484  oracle 0.728  AUPRC 0.685
+    single:traverse      6s   zs 0.232  zsb 0.144  cal 0.600  oracle 0.747  AUPRC 0.749
+    single:silverado     4s   zs 0.098  zsb 0.097  cal 0.540  oracle 0.763  AUPRC 0.622
+    pooled              13s   zs 0.453  zsb 0.385  cal 0.783  oracle 0.806  AUPRC 0.801
+    fedavg              13s   zs 0.630  zsb 0.604  cal 0.776  oracle 0.787  AUPRC 0.763  drift 1.27
+    fedprox_mu0.01      15s   zs 0.520  zsb 0.707  cal 0.777  oracle 0.809  AUPRC 0.758  drift 0.78
+    fedprox_mu0.1       15s   zs 0.774  zsb 0.789  cal 0.792  oracle 0.792  AUPRC 0.754  drift 0.40
+    fedprox_mu1.0       17s   zs 0.708  zsb 0.738  cal 0.711  oracle 0.762  AUPRC 0.737  drift 0.22
+
+
+####################################################################################
+SUMMARY (MLP)   mean over 10 seeds, per held-out vehicle
+####################################################################################
+
+--- choices made on the source vehicles ---
+  held out impala     feature set stat_sf  budget t001  mu 0.01
+  held out traverse   feature set stat     budget t001  mu 0.01
+  held out silverado  feature set stat_sf  budget t001  mu 0.1
+  held out forester   feature set stat_sf  budget t001  mu 0.01
+
+--- MCC, zero-shot (zs) ---
+  arm            impala   traverse  silverado   forester     MEAN
+  single          0.123      0.255      0.125      0.191    0.173
+  pooled          0.332      0.179      0.209      0.480    0.300
+  fedavg          0.509      0.560      0.482      0.634    0.546
+  fedprox         0.500      0.626      0.362      0.700    0.547
+
+--- MCC, benign-calibrated (cal) ---
+  arm            impala   traverse  silverado   forester     MEAN
+  single          0.340      0.211      0.439      0.613    0.401
+  pooled          0.516      0.244      0.656      0.773    0.547
+  fedavg          0.352      0.169      0.719      0.763    0.501
+  fedprox         0.371      0.178      0.697      0.765    0.503
+
+--- AUPRC ---
+  arm            impala   traverse  silverado   forester     MEAN
+  single          0.378      0.491      0.582      0.663    0.528
+  pooled          0.538      0.547      0.749      0.793    0.657
+  fedavg          0.455      0.600      0.701      0.760    0.629
+  fedprox         0.427      0.591      0.660      0.745    0.606
+
+  Each cell averages the seeds, so there is one number per vehicle.
+  With four vehicles, differences are described per vehicle, not
+  tested as if the seeds were independent (analyse_results.py).
+
+total runtime 89 min
+saved mlp_results.csv, mlp_per_attack.csv, mlp_selection_log.csv, mlp_selected.csv and scores/ in results/

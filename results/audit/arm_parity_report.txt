@@ -1,0 +1,106 @@
+==========================================================================================
+1. SAVED RESULTS: same feature set, budget and seeds for every arm
+==========================================================================================
+  forester  feature_set pooled ['stat_sf']  fedavg ['stat_sf']  fedprox ['stat_sf']   -> same
+  forester  budget      pooled ['t001']  fedavg ['t001']  fedprox ['t001']   -> same
+  forester  seeds       pooled 10  fedavg 10  fedprox 10   -> same
+  forester  fedprox mu  [0.01] (selected)
+  impala    feature_set pooled ['stat_sf']  fedavg ['stat_sf']  fedprox ['stat_sf']   -> same
+  impala    budget      pooled ['t001']  fedavg ['t001']  fedprox ['t001']   -> same
+  impala    seeds       pooled 10  fedavg 10  fedprox 10   -> same
+  impala    fedprox mu  [0.01] (selected)
+  silverado feature_set pooled ['stat_sf']  fedavg ['stat_sf']  fedprox ['stat_sf']   -> same
+  silverado budget      pooled ['t001']  fedavg ['t001']  fedprox ['t001']   -> same
+  silverado seeds       pooled 10  fedavg 10  fedprox 10   -> same
+  silverado fedprox mu  [0.1] (selected)
+  traverse  feature_set pooled ['stat']  fedavg ['stat']  fedprox ['stat']   -> same
+  traverse  budget      pooled ['t001']  fedavg ['t001']  fedprox ['t001']   -> same
+  traverse  seeds       pooled 10  fedavg 10  fedprox 10   -> same
+  traverse  fedprox mu  [0.01] (selected)
+  road      feature_set pooled ['stat_sf']  fedavg ['stat_sf']  fedprox ['stat_sf']   -> same
+  road      budget      pooled ['t001']  fedavg ['t001']  fedprox ['t001']   -> same
+  road      seeds       pooled 10  fedavg 10  fedprox 10   -> same
+  road      fedprox mu  [0.01] (selected)
+
+==========================================================================================
+2. REBUILT TRAINING INPUTS (as in run_federated.py and run_road.py)
+==========================================================================================
+
+  held out: impala   sources: traverse, silverado, forester   features: stat_sf (9)
+    client traverse    224,431 training windows, attack share 6.73%, class weight 5.00
+    client silverado   145,901 training windows, attack share 6.82%, class weight 5.00
+    client forester    125,037 training windows, attack share 14.98%, class weight 5.00
+    pooled              495,369 training windows (= sum of the clients: True), attack share 8.84%, class weight 5.00
+    scaling statistics fingerprint 2fc14e6c61, used by every arm
+    network 9-64-32-1, LayerNorm, 2945 weights; identical initial weights for the same seed: True
+    windows seen: pooled 9,907,380, federated 9,907,380; gradient steps: pooled 19,360, federated 19,380 (summed over clients)
+    FedAvg averaging weights (share of training windows): traverse 45.3%, silverado 29.5%, forester 25.2%; pooled training weights each vehicle by the same shares
+
+  held out: traverse   sources: impala, silverado, forester   features: stat (13)
+    client impala      116,079 training windows, attack share 6.35%, class weight 5.00
+    client silverado   145,901 training windows, attack share 6.82%, class weight 5.00
+    client forester    125,037 training windows, attack share 14.98%, class weight 5.00
+    pooled              387,017 training windows (= sum of the clients: True), attack share 9.31%, class weight 5.00
+    scaling statistics fingerprint 855a2b14c0, used by every arm
+    network 13-64-32-1, LayerNorm, 3201 weights; identical initial weights for the same seed: True
+    windows seen: pooled 7,740,340, federated 7,740,340; gradient steps: pooled 15,120, federated 15,140 (summed over clients)
+    FedAvg averaging weights (share of training windows): impala 30.0%, silverado 37.7%, forester 32.3%; pooled training weights each vehicle by the same shares
+
+  held out: silverado   sources: impala, traverse, forester   features: stat_sf (9)
+    client impala      116,079 training windows, attack share 6.35%, class weight 5.00
+    client traverse    224,431 training windows, attack share 6.73%, class weight 5.00
+    client forester    125,037 training windows, attack share 14.98%, class weight 5.00
+    pooled              465,547 training windows (= sum of the clients: True), attack share 8.85%, class weight 5.00
+    scaling statistics fingerprint 2e27b64a61, used by every arm
+    network 9-64-32-1, LayerNorm, 2945 weights; identical initial weights for the same seed: True
+    windows seen: pooled 9,310,940, federated 9,310,940; gradient steps: pooled 18,200, federated 18,220 (summed over clients)
+    FedAvg averaging weights (share of training windows): impala 24.9%, traverse 48.2%, forester 26.9%; pooled training weights each vehicle by the same shares
+
+  held out: forester   sources: impala, traverse, silverado   features: stat_sf (9)
+    client impala      116,079 training windows, attack share 6.35%, class weight 5.00
+    client traverse    224,431 training windows, attack share 6.73%, class weight 5.00
+    client silverado   145,901 training windows, attack share 6.82%, class weight 5.00
+    pooled              486,411 training windows (= sum of the clients: True), attack share 6.66%, class weight 5.00
+    scaling statistics fingerprint 0c081e8fd6, used by every arm
+    network 9-64-32-1, LayerNorm, 2945 weights; identical initial weights for the same seed: True
+    windows seen: pooled 9,728,220, federated 9,728,220; gradient steps: pooled 19,020, federated 19,020 (summed over clients)
+    FedAvg averaging weights (share of training windows): impala 23.9%, traverse 46.1%, silverado 30.0%; pooled training weights each vehicle by the same shares
+
+  held out: road   sources: impala, traverse, silverado, forester   features: stat_sf (9)
+    client impala      116,079 training windows, attack share 6.35%, class weight 5.00
+    client traverse    224,431 training windows, attack share 6.73%, class weight 5.00
+    client silverado   145,901 training windows, attack share 6.82%, class weight 5.00
+    client forester    125,037 training windows, attack share 14.98%, class weight 5.00
+    pooled              611,448 training windows (= sum of the clients: True), attack share 8.36%, class weight 5.00
+    scaling statistics fingerprint 8da2f1de0c, used by every arm
+    network 9-64-32-1, LayerNorm, 2945 weights; identical initial weights for the same seed: True
+    windows seen: pooled 12,228,960, federated 12,228,960; gradient steps: pooled 23,900, federated 23,920 (summed over clients)
+    FedAvg averaging weights (share of training windows): impala 19.0%, traverse 36.7%, silverado 23.9%, forester 20.4%; pooled training weights each vehicle by the same shares
+
+==========================================================================================
+3. DIFFERENCES BY DESIGN (from the code of run_federated.py)
+==========================================================================================
+  optimiser
+    pooled:    Adam, lr 0.0003, weight decay 0.0001, gradient clip 1.0; one optimiser for all 20 epochs
+    federated: same settings, but a new Adam optimiser in every round and client (its memory restarts each round)
+    -> differs by design
+  batches
+    pooled:    batches of 512 windows mixed from all source vehicles
+    federated: batches of 512 windows from one vehicle (the client)
+    -> differs by design
+  loss
+    pooled:    binary cross-entropy with class weight
+    federated: same; FedProx adds (mu/2)*||w - w_global||^2
+    -> same (FedProx: by design)
+  zero-shot threshold
+    pooled:    set on the source calibration windows of all sources
+    federated: same windows (clients share model scores, not data)
+    -> same
+  evaluation seeds
+    pooled:    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    federated: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    -> same
+
+==========================================================================================
+SUMMARY: 70 checks; 0 unexpected differences
+Differences marked 'by design' are documented, not fixed: the method is frozen.

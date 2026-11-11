@@ -1,0 +1,4 @@
+family,held_out,parameter,chosen,criterion,scores,data_used
+mlp,external,feature_set,stat_sf,"mean inner AUPRC, pooled MLP",all 0.6255; raw 0.2732; stat 0.6528; stat_sf 0.6723,"inner leave-one-source-out on impala, traverse, silverado, forester"
+mlp,external,budget,t001,"mean inner MCC at cal, pooled MLP (stat_sf)",t001 0.5595; t005 0.4862; t01 0.4146; t05 0.2692,"inner leave-one-source-out on impala, traverse, silverado, forester"
+mlp,external,fedprox_mu,0.01,"mean inner AUPRC, FedProx (stat_sf)",0.01 0.6058; 0.1 0.5866; 1.0 0.5708,"inner leave-one-source-out on impala, traverse, silverado, forester"

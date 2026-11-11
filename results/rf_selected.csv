@@ -1,0 +1,9 @@
+family,held_out,parameter,chosen,criterion,scores,data_used
+rf,impala,feature_set,all,mean inner AUPRC,all 0.7394; raw 0.3046; stat 0.7169; stat_sf 0.6612,"inner leave-one-source-out on traverse, silverado, forester"
+rf,impala,budget,t001,mean inner MCC at cal (all),t001 0.6207; t005 0.5796; t01 0.5657; t05 0.4312,"inner leave-one-source-out on traverse, silverado, forester"
+rf,traverse,feature_set,all,mean inner AUPRC,all 0.7066; raw 0.1921; stat 0.6361; stat_sf 0.6123,"inner leave-one-source-out on impala, silverado, forester"
+rf,traverse,budget,t001,mean inner MCC at cal (all),t001 0.6693; t005 0.5588; t01 0.4761; t05 0.2384,"inner leave-one-source-out on impala, silverado, forester"
+rf,silverado,feature_set,all,mean inner AUPRC,all 0.6721; raw 0.2796; stat 0.6246; stat_sf 0.6190,"inner leave-one-source-out on impala, traverse, forester"
+rf,silverado,budget,t001,mean inner MCC at cal (all),t001 0.4882; t005 0.3858; t01 0.3145; t05 0.2452,"inner leave-one-source-out on impala, traverse, forester"
+rf,forester,feature_set,all,mean inner AUPRC,all 0.7140; raw 0.2907; stat 0.6534; stat_sf 0.5777,"inner leave-one-source-out on impala, traverse, silverado"
+rf,forester,budget,t001,mean inner MCC at cal (all),t001 0.5890; t005 0.5624; t01 0.5492; t05 0.4563,"inner leave-one-source-out on impala, traverse, silverado"

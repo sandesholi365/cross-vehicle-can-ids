@@ -1,0 +1,398 @@
+{
+  "choices": {
+    "alpha": 0.4,
+    "d2_rules": [
+      {
+        "arm": "pooled",
+        "family": "kofn",
+        "limit_met": false,
+        "limit_per_hour": 1.0,
+        "rule": "20-of-20",
+        "threshold": "zs"
+      },
+      {
+        "arm": "pooled",
+        "family": "kofn",
+        "limit_met": true,
+        "limit_per_hour": 10.0,
+        "rule": "18-of-20",
+        "threshold": "zs"
+      },
+      {
+        "arm": "pooled",
+        "family": "cusum",
+        "limit_met": true,
+        "limit_per_hour": 1.0,
+        "rule": "cusum k0.25 h0.5",
+        "threshold": "zs"
+      },
+      {
+        "arm": "pooled",
+        "family": "cusum",
+        "limit_met": true,
+        "limit_per_hour": 10.0,
+        "rule": "cusum k0.25 h0.25",
+        "threshold": "zs"
+      },
+      {
+        "arm": "pooled",
+        "family": "kofn",
+        "limit_met": true,
+        "limit_per_hour": 1.0,
+        "rule": "20-of-20",
+        "threshold": "cal"
+      },
+      {
+        "arm": "pooled",
+        "family": "kofn",
+        "limit_met": true,
+        "limit_per_hour": 10.0,
+        "rule": "19-of-20",
+        "threshold": "cal"
+      },
+      {
+        "arm": "pooled",
+        "family": "cusum",
+        "limit_met": true,
+        "limit_per_hour": 1.0,
+        "rule": "cusum k0.25 h0.25",
+        "threshold": "cal"
+      },
+      {
+        "arm": "pooled",
+        "family": "cusum",
+        "limit_met": true,
+        "limit_per_hour": 10.0,
+        "rule": "cusum k0.25 h0.1",
+        "threshold": "cal"
+      },
+      {
+        "arm": "fedavg",
+        "family": "kofn",
+        "limit_met": true,
+        "limit_per_hour": 1.0,
+        "rule": "9-of-10",
+        "threshold": "zs"
+      },
+      {
+        "arm": "fedavg",
+        "family": "kofn",
+        "limit_met": true,
+        "limit_per_hour": 10.0,
+        "rule": "5-of-5",
+        "threshold": "zs"
+      },
+      {
+        "arm": "fedavg",
+        "family": "cusum",
+        "limit_met": true,
+        "limit_per_hour": 1.0,
+        "rule": "cusum k0 h8",
+        "threshold": "zs"
+      },
+      {
+        "arm": "fedavg",
+        "family": "cusum",
+        "limit_met": true,
+        "limit_per_hour": 10.0,
+        "rule": "cusum k0 h1",
+        "threshold": "zs"
+      },
+      {
+        "arm": "fedavg",
+        "family": "kofn",
+        "limit_met": false,
+        "limit_per_hour": 1.0,
+        "rule": "20-of-20",
+        "threshold": "cal"
+      },
+      {
+        "arm": "fedavg",
+        "family": "kofn",
+        "limit_met": false,
+        "limit_per_hour": 10.0,
+        "rule": "20-of-20",
+        "threshold": "cal"
+      },
+      {
+        "arm": "fedavg",
+        "family": "cusum",
+        "limit_met": true,
+        "limit_per_hour": 1.0,
+        "rule": "cusum k0.25 h1",
+        "threshold": "cal"
+      },
+      {
+        "arm": "fedavg",
+        "family": "cusum",
+        "limit_met": true,
+        "limit_per_hour": 10.0,
+        "rule": "cusum k0.25 h0.5",
+        "threshold": "cal"
+      }
+    ],
+    "mlp": {
+      "budget": "t001",
+      "feature_set": "stat_sf",
+      "mu": 0.01
+    },
+    "rf": {
+      "budget": "t001",
+      "feature_set": "all"
+    }
+  },
+  "crysys": {
+    "label_files": 1812,
+    "label_files_md5": "023fad39ea21490f7b6b8d2abc287665",
+    "label_report_md5": "21ae202651286bbb527732ec82d705b7",
+    "traces_failed": {
+      "fabrication": 32
+    },
+    "traces_passed": {
+      "fabrication": 592,
+      "masquerade": 624
+    }
+  },
+  "frozen_on": "2026-10-30",
+  "md5": {
+    "code": {
+      "data/crysys_labels.py": "04086d8a33d60af45f45aeb1bc6d5caf",
+      "experiments/common.py": "9a17b0e6b612e745234638ea3b8783e5",
+      "experiments/direction1_averaging.py": "beffd3686380298ea257418ee45f54a1",
+      "experiments/direction1_control.py": "4ccf39907da456d4e0e9ae965ac82cfe",
+      "experiments/direction2_alarms.py": "16cda8756e56197415558ca85661bb78",
+      "experiments/explain_arms.py": "84c605d40fb84c5ffb222f13b53b6509",
+      "experiments/explain_avg.py": "656710c682d9655245c5c3231863b7df",
+      "experiments/feasibility_alarms.py": "06e733427de8a2830aeba5591d381b4d",
+      "experiments/frozen_method.py": "b77d0b00bacb5dd0ac84b9a3f247a57d",
+      "experiments/run_baselines.py": "c92edf97c60639b4e05693217f14788a",
+      "experiments/run_external.py": "b45704d405d34c5a1eccebdcdd2cb421",
+      "experiments/run_federated.py": "f3cf48b77068a7b4c0dc852057be04d6",
+      "experiments/run_road.py": "4f860a233120b6c08bb85d68c289d67d",
+      "features/build_crysys_windows.py": "6805b390b92d8dd260dfa7a999d7617f",
+      "features/build_road_windows.py": "7a9ca89a38d82f0bfd3505f9b36d0f9f",
+      "features/build_windows.py": "39ce416ca6d99f57ba68965001e1d9c3"
+    },
+    "inputs": {
+      "data/processed/features/crysys_w100.csv": "d79fcdbc3f9907e1b498b3e42e9207bf",
+      "data/processed/features/forester_w100.csv": "6d9133ccfb750d32d3a8e15a1555a70b",
+      "data/processed/features/impala_w100.csv": "06eece740448fb4084af61add0da6c74",
+      "data/processed/features/road_w100.csv": "7af11db3b51915cba20606d9dddb34ef",
+      "data/processed/features/silverado_w100.csv": "7de6eac25c905b132a3e43605c05560b",
+      "data/processed/features/traverse_w100.csv": "a69e0452dabf88aa1280e671d6df1d46"
+    },
+    "selections": {
+      "alpha_selected.csv": "5afde354dd78a3c95cad6f347cd4f077",
+      "alpha_selection_log.csv": "69b1e83d143f6037553f585ebd267d04",
+      "d2_inner_log.csv": "0f034d2362ff91b22ef6affaf8eaed0d",
+      "d2_selected.csv": "7ba538195299475e1ca6618ff5c04cea",
+      "mlp_selected.csv": "b399e4729f27262233a11c54e101ea10",
+      "mlp_selection_log.csv": "97d6b4718a5baa4b881f11fad47e913e",
+      "rf_selected.csv": "be05b65f5fa244ce85fe0ae33e9fec33",
+      "rf_selection_log.csv": "4f8324bb2b8b42ac14451583c1d0521f"
+    }
+  },
+  "quick_mode": false,
+  "rules": [
+    "Nothing is chosen, tuned or changed on CrySyS or ROAD. Every choice was made on CAN-Train-and-Test (CTT) by the inner leave-one-source-out loop over all four vehicles.",
+    "Final models are trained on all four CTT vehicles (fit windows); the scaler is fitted on those windows only. MLPs use the ten evaluation seeds 0-9; the RF uses its one seed.",
+    "Thresholds: zs = MCC-optimal on the CTT calibration windows; zsb = the selected budget B on CTT held-out attack-free windows; cal = budget B on the external dataset's attack-free traffic (CrySyS: the 26 benign traces; ROAD: the ambient captures); oracle = upper bound only.",
+    "CrySyS only, reported next to cal and decided now: cal_loso = budget B on the benign traces of the OTHER scenarios, so the threshold never comes from the very trace that the attacked trace replays (every CrySyS attacked trace replays its scenario's benign trace, so plain cal is calibrated on the same normal traffic it is scored on).",
+    "CrySyS labels: only traces that passed every check of crysys_labels.py (label_report.csv, passed = True); frame labels from labels/<trace>.npy, never the JSON markers; window = attack if it holds at least one attack frame; uncertain windows are left out of every window-level result and count as attack windows for alarm episodes.",
+    "Scored sets are evaluated separately: CrySyS fabrication and masquerade; ROAD fabrication and masquerade (as in the thesis). Attack-free recordings are never scored.",
+    "Direction 1 settings: avg_weights, ens_logit, ens_prob (three vehicle members, 20 epochs, same start), interp_sel at the frozen alpha, rand_avg_weights and rand_fedavg (matched random partition of the four vehicles' fit windows), next to pooled and FedAvg.",
+    "Direction 2: the frozen rule of each arm (pooled, FedAvg), threshold (zs, cal), family (k-of-n, CUSUM) and limit (1, 10 per hour) is applied unchanged; episodes merged over 1 s (5 s as sensitivity); false alarm = alarm on a benign window at least 10 windows from an attack episode whose evidence holds no attack window.",
+    "Each external dataset is run once. A finished run writes COMPLETED and is never repeated; an interrupted run continues where it stopped, with the same frozen files."
+  ],
+  "settings": {
+    "crysys_labels": {
+      "f5_tol_periods": 3.0,
+      "fast_period_s": 0.02,
+      "inj_run": 15,
+      "inj_search_s": 3.0,
+      "inj_window_s": 0.025,
+      "late_cap_s": 0.03,
+      "late_frac": 1.5,
+      "marker_clip_s": 0.3,
+      "marker_search_before_s": 1.0,
+      "marker_tol_s": 0.1,
+      "max_loss": 0.01,
+      "nontarget_window_s": 0.1,
+      "offset_keep": 6,
+      "offset_same_s": 0.002,
+      "offset_sample": 2000,
+      "offset_try": 4,
+      "shift_run": 11,
+      "tol_s": 0.004,
+      "window": 100
+    },
+    "data": {
+      "budgets": {
+        "t001": 0.0001,
+        "t005": 0.0005,
+        "t01": 0.001,
+        "t05": 0.005
+      },
+      "calibration_fraction": 0.15,
+      "ctt_vehicles": [
+        "impala",
+        "traverse",
+        "silverado",
+        "forester"
+      ],
+      "feature_sets": [
+        "raw",
+        "stat",
+        "stat_sf",
+        "all"
+      ],
+      "split_seed": 42,
+      "stat_scale_free": [
+        "stat_iat_cv",
+        "stat_iat_max_ratio",
+        "stat_iat_min_ratio",
+        "stat_id_entropy_norm",
+        "stat_unique_id_ratio",
+        "stat_top_id_frac",
+        "stat_repeat_id_frac",
+        "stat_repeat_payload_frac",
+        "stat_byte_change_rate"
+      ],
+      "threshold_candidates": 300,
+      "threshold_tie_tolerance": 0.005,
+      "window_messages": 100
+    },
+    "direction1": {
+      "alpha_grid": [
+        0.0,
+        0.1,
+        0.2,
+        0.3,
+        0.4,
+        0.5,
+        0.6,
+        0.7,
+        0.8,
+        0.9,
+        1.0
+      ],
+      "alpha_tie": 0.005,
+      "benign_quantiles": {
+        "q90": 0.9,
+        "q99": 0.99,
+        "q999": 0.999,
+        "q9999": 0.9999
+      },
+      "ece_bins": 15,
+      "member_epochs": 20,
+      "random_partition": "matched to the vehicle clients in windows and attack windows; every window once",
+      "random_partition_seed": "7000 + seed",
+      "same_start": "every model of a seed starts from new_model(n, seed)",
+      "settings": [
+        "pooled",
+        "fedavg",
+        "avg_weights",
+        "ens_logit",
+        "ens_prob",
+        "interp_sel",
+        "rand_avg_weights",
+        "rand_fedavg"
+      ]
+    },
+    "direction2": {
+      "arms": [
+        "pooled",
+        "fedavg"
+      ],
+      "clear_windows": 10,
+      "cusum_h": [
+        0.1,
+        0.25,
+        0.5,
+        1.0,
+        2.0,
+        4.0,
+        8.0,
+        16.0
+      ],
+      "cusum_kappa": [
+        -0.5,
+        -0.25,
+        0.0,
+        0.25,
+        0.5,
+        1.0
+      ],
+      "episode_gaps_s": [
+        1.0,
+        5.0
+      ],
+      "kofn_n": [
+        1,
+        3,
+        5,
+        10,
+        20
+      ],
+      "limits_per_hour": [
+        1.0,
+        10.0
+      ],
+      "selection_gap_s": 1.0,
+      "thresholds": [
+        "zs",
+        "cal"
+      ],
+      "tie": 0.005
+    },
+    "mlp": {
+      "batch": 512,
+      "central_epochs": 20,
+      "evaluation_seeds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "grad_clip": 1.0,
+      "hidden": [
+        64,
+        32
+      ],
+      "local_epochs": 2,
+      "lr": 0.0003,
+      "mu_values": [
+        0.01,
+        0.1,
+        1.0
+      ],
+      "norm": "LayerNorm (no BatchNorm)",
+      "pos_weight_cap": 5.0,
+      "rounds": 10,
+      "scaler": "median/IQR on the source training windows, then arcsinh",
+      "selection_seeds": [
+        100,
+        101,
+        102
+      ],
+      "weight_decay": 0.0001
+    },
+    "random_forest": {
+      "max_train_windows": 400000,
+      "min_samples_leaf": 2,
+      "pooled_modes": [
+        "pooled_3",
+        "pooled_3_balanced",
+        "pooled_3_matched"
+      ],
+      "seed": 42,
+      "trees": 300
+    }
+  }
+}

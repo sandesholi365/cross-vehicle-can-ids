@@ -1,0 +1,49 @@
+ambient (attack-free) ...
+    ambient_dyno_drive_basic_long                     29,912 windows
+    ambient_dyno_drive_basic_short                    10,636 windows
+    ambient_dyno_drive_benign_anomaly                  7,715 windows
+    ambient_dyno_drive_extended_long                  14,242 windows
+    ambient_dyno_drive_extended_short                  7,904 windows
+    ambient_dyno_drive_radio_infotainment              9,328 windows
+    ambient_dyno_drive_winter                          1,141 windows
+    ambient_dyno_exercise_all_bits                    44,194 windows
+    ambient_dyno_idle_radio_infotainment              15,723 windows
+    ambient_dyno_reverse                               1,230 windows
+    ambient_highway_street_driving_diagnostics        11,247 windows
+    ambient_highway_street_driving_long               88,219 windows
+
+attack captures ...
+    correlated_signal_attack_1                           812 windows,    521 attack
+    correlated_signal_attack_1_masquerade                791 windows,    500 attack
+    correlated_signal_attack_2                           696 windows,    533 attack
+    correlated_signal_attack_2_masquerade                675 windows,    512 attack
+    correlated_signal_attack_3                           418 windows,    315 attack
+    correlated_signal_attack_3_masquerade                405 windows,    302 attack
+    fuzzing_attack_1                                     493 windows,     87 attack
+    fuzzing_attack_2                                     323 windows,     51 attack
+    fuzzing_attack_3                                     132 windows,     17 attack
+    max_engine_coolant_temp_attack                       619 windows,     43 attack
+    max_engine_coolant_temp_attack_masquerade            618 windows,     43 attack
+    max_speedometer_attack_1                           2,133 windows,    614 attack
+    max_speedometer_attack_1_masquerade                2,109 windows,    590 attack
+    max_speedometer_attack_2                           1,458 windows,    783 attack
+    max_speedometer_attack_2_masquerade                1,427 windows,    752 attack
+    max_speedometer_attack_3                           2,135 windows,  1,522 attack
+    max_speedometer_attack_3_masquerade                2,074 windows,  1,461 attack
+    reverse_light_off_attack_1                           679 windows,    168 attack
+    reverse_light_off_attack_1_masquerade                672 windows,    162 attack
+    reverse_light_off_attack_2                           996 windows,    591 attack
+    reverse_light_off_attack_2_masquerade                972 windows,    567 attack
+    reverse_light_off_attack_3                         1,408 windows,    607 attack
+    reverse_light_off_attack_3_masquerade              1,384 windows,    582 attack
+    reverse_light_on_attack_1                          1,332 windows,    498 attack
+    reverse_light_on_attack_1_masquerade               1,312 windows,    478 attack
+    reverse_light_on_attack_2                          1,759 windows,    920 attack
+    reverse_light_on_attack_2_masquerade               1,722 windows,    883 attack
+    reverse_light_on_attack_3                          1,560 windows,    586 attack
+    reverse_light_on_attack_3_masquerade               1,537 windows,    563 attack
+
+  -> road_w100.csv: 274,142 windows (241,491 attack-free, 32,651 in attack captures, 15,251 attack)
+
+  time-unit check: median gap between messages CAN-Train-and-Test (Impala) 0.000694, ROAD 0.000416 (ratio 0.60)
+  OK: same order of magnitude.

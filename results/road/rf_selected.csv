@@ -1,0 +1,3 @@
+family,held_out,parameter,chosen,criterion,scores,data_used
+rf,road,feature_set,all,mean inner AUPRC,all 0.7090; raw 0.2848; stat 0.6535; stat_sf 0.6989,"inner leave-one-source-out on impala, traverse, silverado, forester"
+rf,road,budget,t001,mean inner MCC at cal (all),t001 0.5433; t005 0.4721; t01 0.4388; t05 0.3259,"inner leave-one-source-out on impala, traverse, silverado, forester"

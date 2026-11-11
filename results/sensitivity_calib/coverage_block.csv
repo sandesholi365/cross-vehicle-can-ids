@@ -1,0 +1,5 @@
+vehicle,fit_windows,calib_windows,calib_share_of_training,variant,calib_recordings,calib_attack_windows,calib_attack_share,attack_types_without_calib_recording
+impala,115991,20480,0.15006851272431507,block,16,273,0.013330078125,
+traverse,224348,39602,0.15003599166508808,block,24,941,0.023761426190596433,
+silverado,145815,25747,0.15007402571665054,block,21,743,0.02885773099778615,
+forester,124946,22065,0.15009080953125956,block,26,2149,0.09739406299569454,

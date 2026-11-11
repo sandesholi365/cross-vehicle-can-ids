@@ -1,0 +1,155 @@
+================================================================================================
+SETTINGS FOR ROAD, chosen on the four CAN-Train-and-Test vehicles only
+================================================================================================
+  RF  feature_set  all       (mean inner AUPRC: all 0.7090; raw 0.2848; stat 0.6535; stat_sf 0.6989)
+  RF  budget       t001      (mean inner MCC at cal (all): t001 0.5433; t005 0.4721; t01 0.4388; t05 0.3259)
+  MLP feature_set  stat_sf   (mean inner AUPRC, pooled MLP: all 0.6255; raw 0.2732; stat 0.6528; stat_sf 0.6723)
+  MLP budget       t001      (mean inner MCC at cal, pooled MLP (stat_sf): t001 0.5595; t005 0.4862; t01 0.4146; t05 0.2692)
+  MLP fedprox_mu   0.01      (mean inner AUPRC, FedProx (stat_sf): 0.01 0.6058; 0.1 0.5866; 1.0 0.5708)
+
+================================================================================================
+ZERO-SHOT vs BENIGN-CALIBRATED: CAN-Train-and-Test (mean of 4 held-out vehicles) and ROAD
+================================================================================================
+
+  CAN-Train-and-Test
+    model           AUROC  AUPRC     zs    zsb    cal  oracle
+    RF pooled       0.869  0.709  0.067  0.074  0.543   0.746
+    MLP single      0.765  0.528  0.173  0.139  0.401   0.597
+    MLP pooled      0.831  0.657  0.300  0.310  0.547   0.683
+    MLP FedAvg      0.814  0.629  0.546  0.521  0.501   0.679
+    MLP FedProx     0.788  0.606  0.547  0.499  0.503   0.667
+
+  ROAD, fabrication
+    model           AUROC  AUPRC     zs    zsb    cal  oracle
+    RF pooled       0.626  0.569  0.000  0.000  0.012   0.256
+    MLP single      0.772  0.679  0.294  0.266  0.008   0.496
+    MLP pooled      0.640  0.520  0.287  0.270  0.002   0.426
+    MLP FedAvg      0.814  0.702  0.531  0.457  0.006   0.563
+    MLP FedProx     0.827  0.722  0.551  0.482  0.009   0.584
+
+  ROAD, masquerade
+    model           AUROC  AUPRC     zs    zsb    cal  oracle
+    RF pooled       0.501  0.486  0.000  0.000  0.000   0.050
+    MLP single      0.511  0.494 -0.011 -0.010  0.003   0.052
+    MLP pooled      0.491  0.471 -0.041 -0.035  0.002   0.019
+    MLP FedAvg      0.508  0.494  0.020  0.018  0.011   0.054
+    MLP FedProx     0.507  0.491  0.019  0.015  0.008   0.047
+
+================================================================================================
+TRAINING STRATEGIES ON ROAD (fabrication), mean +- seed sd
+================================================================================================
+  arm                  auroc           auprc          mcc_zs         mcc_cal
+  single         0.772+-0.04     0.679+-0.04     0.294+-0.05     0.008+-0.00
+  pooled         0.640+-0.08     0.520+-0.07     0.287+-0.04     0.002+-0.01
+  FedAvg         0.814+-0.04     0.702+-0.05     0.531+-0.07     0.006+-0.01
+  FedProx        0.827+-0.05     0.722+-0.07     0.551+-0.08     0.009+-0.01
+
+  FedProx at every mu (MCC cal / AUPRC; * = selected)
+    mu 0.01  * 0.009 / 0.722
+    mu 0.1     0.009 / 0.731
+    mu 1.0     0.009 / 0.751
+
+================================================================================================
+FEATURE SETS ON ROAD (Random Forest pooled, fabrication)
+================================================================================================
+  features     AUROC   AUPRC      zs     cal  oracle
+  raw          0.539   0.538   0.000   0.058   0.119
+  stat         0.602   0.534   0.200   0.054   0.291
+  stat_sf      0.528   0.495   0.107   0.052   0.193
+  all          0.626   0.569   0.000   0.012   0.256   <- selected
+
+================================================================================================
+BENIGN CALIBRATION ON ROAD
+================================================================================================
+  model                   budget  zs flags  held-out ambient  benign in attack
+                                   ambient  recording (mean)          captures
+  mlp_fedavg               0.01%    53.07%            0.009%             0.00%
+  mlp_fedprox              0.01%    58.41%            0.012%             0.00%
+  mlp_pooled               0.01%    86.70%            0.019%             0.01%
+  rf_pooled                0.01%   100.00%            0.010%             0.00%
+
+================================================================================================
+RECALL PER ROAD ATTACK TYPE (zero-shot and calibrated threshold)
+================================================================================================
+
+  false-alarm rate on the benign windows of the attack captures
+    model             fabrication zs   fabrication cal     masquerade zs    masquerade cal
+    RF pooled                100.00%             0.00%           100.00%             0.00%
+    MLP single                75.47%             0.00%            75.39%             0.00%
+    MLP pooled                83.00%             0.01%            83.11%             0.01%
+    MLP FedAvg                42.43%             0.00%            41.84%             0.00%
+    MLP FedProx               41.53%             0.01%            40.99%             0.01%
+
+  recall per attack type
+                                      RF pooled zs  RF pooled cal  MLP pooled zs  MLP pooled cal  MLP FedAvg zs  MLP FedAvg cal  windows
+  attack_type                                                                                                                           
+  reverse_light_on                             1.0          0.000          1.000           0.000          0.957           0.000     2004
+  max_speedometer                              1.0          0.000          1.000           0.000          0.954           0.000     2919
+  correlated_signal                            1.0          0.001          0.999           0.000          0.918           0.000     1369
+  reverse_light_off                            1.0          0.000          0.999           0.000          0.864           0.000     1366
+  fuzzing                                      1.0          0.000          0.909           0.001          0.534           0.000      155
+  max_engine_coolant_temp_masquerade           1.0          0.000          0.926           0.000          0.502           0.000       43
+  max_engine_coolant_temp                      1.0          0.000          0.953           0.000          0.493           0.000       43
+  reverse_light_on_masquerade                  1.0          0.000          0.818           0.000          0.453           0.000     1924
+  max_speedometer_masquerade                   1.0          0.000          0.799           0.000          0.446           0.001     2803
+  correlated_signal_masquerade                 1.0          0.000          0.783           0.000          0.430           0.000     1314
+  reverse_light_off_masquerade                 1.0          0.000          0.793           0.000          0.402           0.000     1311
+
+================================================================================================
+AMBIENT RECORDINGS ABOVE EACH THRESHOLD (share of the recording's windows; descriptive)
+================================================================================================
+
+  RF pooled: attack windows above cal 0.03%, above zs 100.00%; benign windows of the attack captures above zs 100.00%
+    ambient recording                               windows  above zs  above cal  top 0.01% here
+    ambient_dyno_drive_basic_long                    29,912    100.0%     0.000%               0
+    ambient_dyno_drive_basic_short                   10,636    100.0%     0.009%               1
+    ambient_dyno_drive_benign_anomaly                 7,715    100.0%     0.013%               1
+    ambient_dyno_drive_extended_long                 14,242    100.0%     0.007%               1
+    ambient_dyno_drive_extended_short                 7,904    100.0%     0.000%               0
+    ambient_dyno_drive_radio_infotainment             9,328    100.0%     0.011%               1
+    ambient_dyno_drive_winter                         1,141    100.0%     0.000%               0
+    ambient_dyno_exercise_all_bits                   44,194    100.0%     0.000%               0
+    ambient_dyno_idle_radio_infotainment             15,723    100.0%     0.000%               0
+    ambient_dyno_reverse                              1,230    100.0%     0.000%               0
+    ambient_highway_street_driving_diagnostics       11,247    100.0%     0.044%               4
+    ambient_highway_street_driving_long              88,219    100.0%     0.018%              16
+
+  MLP pooled: attack windows above cal 0.00%, above zs 99.90%; benign windows of the attack captures above zs 87.17%
+    ambient recording                               windows  above zs  above cal  top 0.01% here
+    ambient_dyno_drive_basic_long                    29,912     90.4%     0.017%               3
+    ambient_dyno_drive_basic_short                   10,636     92.9%     0.000%               0
+    ambient_dyno_drive_benign_anomaly                 7,715     77.9%     0.026%               2
+    ambient_dyno_drive_extended_long                 14,242     86.5%     0.007%               1
+    ambient_dyno_drive_extended_short                 7,904     84.2%     0.013%               1
+    ambient_dyno_drive_radio_infotainment             9,328     88.3%     0.043%               4
+    ambient_dyno_drive_winter                         1,141     89.0%     0.088%               1
+    ambient_dyno_exercise_all_bits                   44,194     81.0%     0.014%               5
+    ambient_dyno_idle_radio_infotainment             15,723     86.9%     0.000%               0
+    ambient_dyno_reverse                              1,230     85.0%     0.000%               0
+    ambient_highway_street_driving_diagnostics       11,247     89.2%     0.009%               1
+    ambient_highway_street_driving_long              88,219     88.1%     0.007%               6
+
+  MLP FedAvg: attack windows above cal 0.00%, above zs 97.67%; benign windows of the attack captures above zs 52.22%
+    ambient recording                               windows  above zs  above cal  top 0.01% here
+    ambient_dyno_drive_basic_long                    29,912     56.1%     0.017%               5
+    ambient_dyno_drive_basic_short                   10,636     53.9%     0.000%               0
+    ambient_dyno_drive_benign_anomaly                 7,715     58.4%     0.052%               4
+    ambient_dyno_drive_extended_long                 14,242     50.4%     0.000%               0
+    ambient_dyno_drive_extended_short                 7,904     50.7%     0.000%               0
+    ambient_dyno_drive_radio_infotainment             9,328     47.8%     0.000%               0
+    ambient_dyno_drive_winter                         1,141     59.0%     0.000%               0
+    ambient_dyno_exercise_all_bits                   44,194     51.0%     0.000%               0
+    ambient_dyno_idle_radio_infotainment             15,723     42.9%     0.000%               0
+    ambient_dyno_reverse                              1,230     45.0%     0.000%               0
+    ambient_highway_street_driving_diagnostics       11,247     57.2%     0.018%               2
+    ambient_highway_street_driving_long              88,219     55.0%     0.017%              13
+
+building figures ...
+  wrote results/road/figures/figR1_regimes.pdf and .png
+  wrote results/road/figures/figR2_scores_rf.pdf and .png
+  wrote results/road/figures/figR2_scores_mlp_pooled.pdf and .png
+  wrote results/road/figures/figR2_scores_mlp_fedavg.pdf and .png
+  wrote results/road/figures/figR3_arms.pdf and .png
+  wrote results/road/figures/figR4_per_attack.pdf and .png
+
+  tables in results/road/tables/, figures in results/road/figures/
